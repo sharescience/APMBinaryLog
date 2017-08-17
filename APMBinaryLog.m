@@ -17,8 +17,6 @@ function APMBinaryLog
     FormatLength = 16;
     LabelLength  = 64;
 
-    log_id_count = 0;
-
     fid = -1;
     [filename, pathname] = uigetfile({'*.bin';'*.*'}, 'Open log file(*.bin)');
     fullname             = strcat(char(pathname), char(filename));
@@ -35,7 +33,8 @@ function APMBinaryLog
 
     types={}; lengths={}; names={}; formats={}; labels={};values={};log={};
     c_last  = zeros(3, 1);
-    PARM_DONE= 0;
+    
+    % first read find all FMT
     while ftell(fid) < fsize
         c       = fread(fid, 1);
         ptr_pos = ftell(fid);
@@ -76,69 +75,15 @@ function APMBinaryLog
                     log = [types, lengths, names, formats, labels, values];
                 end
             else
-                row_num = find(c_last(3)==cell2mat(log(:,1))); 
-                if ~isempty(row_num) % If the ID already in the list
-                    format = strtrim(cellstr(log{row_num, 4}));
-                    format_str = format{1};
-
-                    format_len = size(format_str, 2);
-                    value      = {};
-                    for i = 1: format_len
-                        switch format_str(i)
-                            case 'b'                             %   b   : int8_t
-                                value{i} = fread(fid, 1, 'int8');
-                            case 'B'                             %   B   : uint8_t
-                                value{i} = fread(fid, 1, 'uint8');
-                            case 'h'                             %   h   : int16_t
-                                value{i} = fread(fid, 1, 'int16');
-                            case 'H'                             %   H   : uint16_t
-                                value{i} = fread(fid, 1, 'uint16');
-                            case 'i'                             %   i   : int32_t
-                                value{i} = fread(fid, 'int32');
-                            case 'I'                             %   I   : uint32_t
-                                value{i} = fread(fid, 1, 'uint32');
-                            case 'f'                             %   f   : float
-                                value{i} = fread(fid, 1, 'single');
-                            case 'd'                             %   d   : double
-                                value{i} = double(fread(fid, 8));
-                            case 'n'                             %   n   : char[4]
-                                value{i} = strtrim(cellstr(char(fread(fid, 4)')));
-                            case 'N'                             %   N   : char[16]
-                                value{i} = strtrim(cellstr(char(fread(fid, 16)')));
-                            case 'Z'                             %   Z   : char[64]
-                                value{i} = strtrim(cellstr(char(fread(fid, 64)')));
-                                if any(strncmp('PX4:',value{i},4))
-                                    PARM_DONE = 1;
-                                    break; % if find 'MSG', then re-read file.
-                                end
-                            case 'c'                             %   c   : int16_t * 100
-                                value{i} = fread(fid, 1, 'int16');
-                            case 'C'                             %   C   : uint16_t * 100
-                                value{i} = fread(fid, 1, 'uint16');
-                            case 'e'                             %   e   : int32_t * 100
-                                value{i} = fread(fid, 1, 'int32');
-                            case 'E'                             %   E   : uint32_t * 100
-                                value{i} = fread(fid, 1, 'uint32');
-                            case 'L'                             %   L   : int32_t latitude/longitude
-                                value{i} = fread(fid, 1, 'int32');
-                            case 'M'                             %   M   : uint8_t flight mode
-                                value{i} = fread(fid, 1, 'uint8');
-                            case 'q'                             %   q   : int64_t
-                                value{i} = fread(fid, 1, 'int64');
-                            case 'Q'                             %   Q   : uint64_t
-                                value{i} = fread(fid, 1, 'uint64');
-                        end
-                    end
-                    if PARM_DONE == 1 
-                        break;
-                    end
-                end
                 continue;
             end
         end
     end
+    
+    % re-read log file
     fseek(fid, 0, -1);
     num = 0;
+    
     while ftell(fid) < fsize
         c       = fread(fid, 1);
         ptr_pos = ftell(fid);
@@ -181,19 +126,19 @@ function APMBinaryLog
                         case 'H'                             %   H   : uint16_t
                             value{i} = fread(fid, 1, 'uint16');
                         case 'i'                             %   i   : int32_t
-                            value{i} = fread(fid, 'int32');
+                            value{i} = fread(fid, 1, 'int32');
                         case 'I'                             %   I   : uint32_t
                             value{i} = fread(fid, 1, 'uint32');
                         case 'f'                             %   f   : float
-                            value{i} = fread(fid, 1, 'single');
+                            value{i} = fread(fid, 1, 'uint32=>float');
                         case 'd'                             %   d   : double
-                            value{i} = double(fread(fid, 8));
+                            value{i} = fread(fid, 8, 'uint8=>double');
                         case 'n'                             %   n   : char[4]
-                            value{i} = strtrim(cellstr(char(fread(fid, 4)')));
+                            value{i} = strtrim(cellstr(fread(fid, 4, 'uint8=>char')'));
                         case 'N'                             %   N   : char[16]
-                            value{i} = strtrim(cellstr(char(fread(fid, 16)')));
+                            value{i} = strtrim(cellstr(fread(fid, 16, 'uint8=>char')'));
                         case 'Z'                             %   Z   : char[64]
-                            value{i} = strtrim(cellstr(char(fread(fid, 64)')));
+                            value{i} = strtrim(cellstr(fread(fid, 64, 'uint8=>char')'));
                         case 'c'                             %   c   : int16_t * 100
                             value{i} = fread(fid, 1, 'int16');
                         case 'C'                             %   C   : uint16_t * 100
@@ -214,9 +159,8 @@ function APMBinaryLog
                 end
                 num        = num +1;
                 value{i+1} = num;
-                log{row_num, 6}(size(log{row_num, 6},1)+1,:) = value;
+                log{row_num, 6}(size(log{row_num, 6},1)+1,:) = value; 
             end
-            continue;
         end
     end
     fclose(fid);
@@ -260,4 +204,3 @@ function APMBinaryLog
     end
     assignin('base','log',log);            
 end
-
