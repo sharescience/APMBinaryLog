@@ -130,9 +130,9 @@ function APMBinaryLog
                         case 'I'                             %   I   : uint32_t
                             value{i} = fread(fid, 1, 'uint32');
                         case 'f'                             %   f   : float
-                            value{i} = fread(fid, 1, 'uint32=>float');
+                            value{i} = fread(fid, 1, 'single');
                         case 'd'                             %   d   : double
-                            value{i} = fread(fid, 8, 'uint8=>double');
+                            value{i} = fread(fid, 1, 'double');
                         case 'n'                             %   n   : char[4]
                             value{i} = strtrim(cellstr(fread(fid, 4, 'uint8=>char')'));
                         case 'N'                             %   N   : char[16]
