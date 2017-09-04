@@ -140,13 +140,25 @@ function APMBinaryLog
                         case 'Z'                             %   Z   : char[64]
                             value{i} = strtrim(cellstr(fread(fid, 64, 'uint8=>char')'));
                         case 'c'                             %   c   : int16_t * 100
-                            value{i} = fread(fid, 1, 'int16');
+                            value{i} = fread(fid, 1, 'int16')/100;
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'C'                             %   C   : uint16_t * 100
-                            value{i} = fread(fid, 1, 'uint16');
+                            value{i} = fread(fid, 1, 'uint16')/100;
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'e'                             %   e   : int32_t * 100
-                            value{i} = fread(fid, 1, 'int32');
+                            value{i} = fread(fid, 1, 'int32')/100;
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'E'                             %   E   : uint32_t * 100
-                            value{i} = fread(fid, 1, 'uint32');
+                            value{i} = fread(fid, 1, 'uint32')/100;
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'L'                             %   L   : int32_t latitude/longitude
                             value{i} = fread(fid, 1, 'int32');
                         case 'M'                             %   M   : uint8_t flight mode
