@@ -177,6 +177,7 @@ function APMBinaryLog
     end
     fclose(fid);
 
+    val_names={};
     for i = 1: size(log,1)
         if isempty(log{i, 6})
             continue;
@@ -187,6 +188,9 @@ function APMBinaryLog
                 FIELDS{j}=char(log{i, 5}(j));
             end
             eval(strcat(lower(char(log{i, 3})),'=cell2struct(C,FIELDS,2);'));
+            if ~isequal(char(log{i, 3}), 'PARM') && ~isequal(char(log{i, 3}), 'MSG')
+                val_names{numel(val_names)+1, 1} = lower(char(log{i, 3}));
+            end
             log{i, 7}(1,1) = strfind(log{i, 4}, 'n');
             log{i, 7}(1,2) = strfind(log{i, 4}, 'N');
             log{i, 7}(1,3) = strfind(log{i, 4}, 'Z');
@@ -214,5 +218,6 @@ function APMBinaryLog
             eval(char(strcat('assignin(','''','base','''',', ','''',char(lower(char(log{i, 3}))),'''',',', char(lower(char(log{i, 3}))), ');')));
         end
     end
-    assignin('base','log',log);            
+    assignin('base','log',log);   
+    assignin('base','names',val_names); 
 end

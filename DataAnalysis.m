@@ -22,7 +22,7 @@ function varargout = DataAnalysis(varargin)
 
 % Edit the above text to modify the response to help DataAnalysis
 
-% Last Modified by GUIDE v2.5 03-Aug-2017 20:05:51
+% Last Modified by GUIDE v2.5 23-Sep-2017 15:00:53
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -60,6 +60,15 @@ guidata(hObject, handles);
 
 % UIWAIT makes DataAnalysis wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
+set(handles.popupmenu1,'string',{'1','2','3','4','5','6','7','8','9','10'});
+try evalin('base', 'names');
+    lists = evalin('base', 'names');
+    set(handles.popupmenu2,'string',lists);
+catch
+    APMBinaryLog
+    lists = evalin('base', 'names');
+    set(handles.popupmenu2,'string',lists);
+end
 
 
 % --- Outputs from this function are returned to the command line.
@@ -79,7 +88,7 @@ function tb011_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb011,'Value'))
-    set(handles.tb011,'String','show');
+    set(handles.tb011,'String','1');
     set(handles.tb011,'BackGroundColor','g')
 else
     set(handles.tb011,'String','hide');
@@ -93,25 +102,6 @@ function ed011_Callback(hObject, eventdata, handles)
 % hObject    handle to ed011 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed011,'String')))
-    set(handles.t012,'Visible','off');
-    set(handles.ed012,'Visible','off');    
-else
-    set(handles.t012,'Visible','on');
-    set(handles.ed012,'Visible','on');
-end
-
-if( isempty(get(handles.ed011,'String')) && isempty(get(handles.ed012,'String')))
-    set(handles.tb021,'Visible','off');
-    set(handles.t021,'Visible','off');
-    set(handles.ed021,'Visible','off');
-else
-    
-    set(handles.tb021,'Visible','on');
-    set(handles.t021,'Visible','on');
-    set(handles.ed021,'Visible','on');
-end
-
 global x01
 if(~isempty(get(handles.ed011,'String')))
     x01 = get(handles.ed011,'String');
@@ -140,36 +130,6 @@ function ed012_Callback(hObject, eventdata, handles)
 % hObject    handle to ed012 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed012,'String')))
-    set(handles.t013,'Visible','off');
-    set(handles.t014,'Visible','off');
-    set(handles.t015,'Visible','off');
-    set(handles.ed013,'Visible','off');
-    set(handles.ed014,'Visible','off');
-    set(handles.ed015,'Visible','off');
-    set(handles.ax011,'Visible','off');
-else
-    set(handles.t013,'Visible','on');
-    set(handles.t014,'Visible','on');
-    set(handles.t015,'Visible','on');
-    set(handles.ed013,'Visible','on');
-    set(handles.ed014,'Visible','on');
-    set(handles.ed015,'Visible','on');
-    set(handles.ax011,'Visible','on');
-    plot(handles.ax011,[0,1],[0,0],'b');
-end
-
-if( isempty(get(handles.ed011,'String')) && isempty(get(handles.ed012,'String')))
-    set(handles.tb021,'Visible','off');
-    set(handles.t021,'Visible','off');
-    set(handles.ed021,'Visible','off');
-else
-    
-    set(handles.tb021,'Visible','on');
-    set(handles.t021,'Visible','on');
-    set(handles.ed021,'Visible','on');
-end
-
 global y01
 if(~isempty(get(handles.ed012,'String')))
     y01 = get(handles.ed012,'String');
@@ -268,7 +228,7 @@ function tb021_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb021,'Value'))
-    set(handles.tb021,'String','show');
+    set(handles.tb021,'String','2');
     set(handles.tb021,'BackGroundColor','g')
 else
     set(handles.tb021,'String','hide');
@@ -285,25 +245,6 @@ function ed021_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of ed021 as text
 %        str2double(get(hObject,'String')) returns contents of ed021 as a double
-if(isempty(get(handles.ed021,'String')))
-    set(handles.t022,'Visible','off');
-    set(handles.ed022,'Visible','off');    
-else
-    set(handles.t022,'Visible','on');
-    set(handles.ed022,'Visible','on');
-end
-
-if( isempty(get(handles.ed021,'String')) && isempty(get(handles.ed022,'String')))
-    set(handles.tb031,'Visible','off');
-    set(handles.t031,'Visible','off');
-    set(handles.ed031,'Visible','off');
-else
-    
-    set(handles.tb031,'Visible','on');
-    set(handles.t031,'Visible','on');
-    set(handles.ed031,'Visible','on');
-end
-
 global x02
 if(~isempty(get(handles.ed021,'String')))
     x02 = get(handles.ed021,'String');
@@ -328,36 +269,6 @@ function ed022_Callback(hObject, eventdata, handles)
 % hObject    handle to ed022 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed022,'String')))
-    set(handles.t023,'Visible','off');
-    set(handles.t024,'Visible','off');
-    set(handles.t025,'Visible','off');
-    set(handles.ed023,'Visible','off');
-    set(handles.ed024,'Visible','off');
-    set(handles.ed025,'Visible','off');
-    set(handles.ax021,'Visible','off');
-else
-    set(handles.t023,'Visible','on');
-    set(handles.t024,'Visible','on');
-    set(handles.t025,'Visible','on');
-    set(handles.ed023,'Visible','on');
-    set(handles.ed024,'Visible','on');
-    set(handles.ed025,'Visible','on');
-    set(handles.ax021,'Visible','on');
-    plot(handles.ax021,[0,1],[0,0],'r');
-end
-
-if( isempty(get(handles.ed021,'String')) && isempty(get(handles.ed022,'String')))
-    set(handles.tb031,'Visible','off');
-    set(handles.t031,'Visible','off');
-    set(handles.ed031,'Visible','off');
-else
-    
-    set(handles.tb031,'Visible','on');
-    set(handles.t031,'Visible','on');
-    set(handles.ed031,'Visible','on');
-end
-
 global y02
 if(~isempty(get(handles.ed022,'String')))
     y02 = get(handles.ed022,'String');
@@ -456,7 +367,7 @@ function tb031_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb031,'Value'))
-    set(handles.tb031,'String','show');
+    set(handles.tb031,'String','3');
     set(handles.tb031,'BackGroundColor','g')
 else
     set(handles.tb031,'String','hide');
@@ -470,25 +381,6 @@ function ed031_Callback(hObject, eventdata, handles)
 % hObject    handle to ed031 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed031,'String')))
-    set(handles.t032,'Visible','off');
-    set(handles.ed032,'Visible','off');    
-else
-    set(handles.t032,'Visible','on');
-    set(handles.ed032,'Visible','on');
-end
-
-if( isempty(get(handles.ed031,'String')) && isempty(get(handles.ed032,'String')))
-    set(handles.tb041,'Visible','off');
-    set(handles.t041,'Visible','off');
-    set(handles.ed041,'Visible','off');
-else
-    
-    set(handles.tb041,'Visible','on');
-    set(handles.t041,'Visible','on');
-    set(handles.ed041,'Visible','on');
-end
-
 global x03
 if(~isempty(get(handles.ed031,'String')))
     x03 = get(handles.ed031,'String');
@@ -517,36 +409,6 @@ function ed032_Callback(hObject, eventdata, handles)
 % hObject    handle to ed032 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed032,'String')))
-    set(handles.t033,'Visible','off');
-    set(handles.t034,'Visible','off');
-    set(handles.t035,'Visible','off');
-    set(handles.ed033,'Visible','off');
-    set(handles.ed034,'Visible','off');
-    set(handles.ed035,'Visible','off');
-    set(handles.ax031,'Visible','off');
-else
-    set(handles.t033,'Visible','on');
-    set(handles.t034,'Visible','on');
-    set(handles.t035,'Visible','on');
-    set(handles.ed033,'Visible','on');
-    set(handles.ed034,'Visible','on');
-    set(handles.ed035,'Visible','on');
-    set(handles.ax031,'Visible','on');
-    plot(handles.ax031,[0,1],[0,0],'c');
-end
-
-if( isempty(get(handles.ed031,'String')) && isempty(get(handles.ed032,'String')))
-    set(handles.tb041,'Visible','off');
-    set(handles.t041,'Visible','off');
-    set(handles.ed041,'Visible','off');
-else
-    
-    set(handles.tb041,'Visible','on');
-    set(handles.t041,'Visible','on');
-    set(handles.ed041,'Visible','on');
-end
-
 global y03
 if(~isempty(get(handles.ed032,'String')))
     y03 = get(handles.ed032,'String');
@@ -645,7 +507,7 @@ function tb041_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb041,'Value'))
-    set(handles.tb041,'String','show');
+    set(handles.tb041,'String','4');
     set(handles.tb041,'BackGroundColor','g')
 else
     set(handles.tb041,'String','hide');
@@ -659,25 +521,6 @@ function ed041_Callback(hObject, eventdata, handles)
 % hObject    handle to ed041 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed041,'String')))
-    set(handles.t042,'Visible','off');
-    set(handles.ed042,'Visible','off');    
-else
-    set(handles.t042,'Visible','on');
-    set(handles.ed042,'Visible','on');
-end
-
-if( isempty(get(handles.ed041,'String')) && isempty(get(handles.ed042,'String')))
-    set(handles.tb051,'Visible','off');
-    set(handles.t051,'Visible','off');
-    set(handles.ed051,'Visible','off');
-else
-    
-    set(handles.tb051,'Visible','on');
-    set(handles.t051,'Visible','on');
-    set(handles.ed051,'Visible','on');
-end
-
 global x04
 if(~isempty(get(handles.ed041,'String')))
     x04 = get(handles.ed041,'String');
@@ -706,36 +549,6 @@ function ed042_Callback(hObject, eventdata, handles)
 % hObject    handle to ed042 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed042,'String')))
-    set(handles.t043,'Visible','off');
-    set(handles.t044,'Visible','off');
-    set(handles.t045,'Visible','off');
-    set(handles.ed043,'Visible','off');
-    set(handles.ed044,'Visible','off');
-    set(handles.ed045,'Visible','off');
-    set(handles.ax041,'Visible','off');
-else
-    set(handles.t043,'Visible','on');
-    set(handles.t044,'Visible','on');
-    set(handles.t045,'Visible','on');
-    set(handles.ed043,'Visible','on');
-    set(handles.ed044,'Visible','on');
-    set(handles.ed045,'Visible','on');
-    set(handles.ax041,'Visible','on');
-    plot(handles.ax041,[0,1],[0,0],'g');
-end
-
-if( isempty(get(handles.ed041,'String')) && isempty(get(handles.ed042,'String')))
-    set(handles.tb051,'Visible','off');
-    set(handles.t051,'Visible','off');
-    set(handles.ed051,'Visible','off');
-else
-    
-    set(handles.tb051,'Visible','on');
-    set(handles.t051,'Visible','on');
-    set(handles.ed051,'Visible','on');
-end
-
 global y04
 if(~isempty(get(handles.ed042,'String')))
     y04 = get(handles.ed042,'String');
@@ -834,7 +647,7 @@ function tb051_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb051,'Value'))
-    set(handles.tb051,'String','show');
+    set(handles.tb051,'String','5');
     set(handles.tb051,'BackGroundColor','g')
 else
     set(handles.tb051,'String','hide');
@@ -848,25 +661,6 @@ function ed051_Callback(hObject, eventdata, handles)
 % hObject    handle to ed051 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed051,'String')))
-    set(handles.t052,'Visible','off');
-    set(handles.ed052,'Visible','off');    
-else
-    set(handles.t052,'Visible','on');
-    set(handles.ed052,'Visible','on');
-end
-
-if( isempty(get(handles.ed051,'String')) && isempty(get(handles.ed052,'String')))
-    set(handles.tb061,'Visible','off');
-    set(handles.t061,'Visible','off');
-    set(handles.ed061,'Visible','off');
-else
-    
-    set(handles.tb061,'Visible','on');
-    set(handles.t061,'Visible','on');
-    set(handles.ed061,'Visible','on');
-end
-
 global x05
 if(~isempty(get(handles.ed051,'String')))
     x05 = get(handles.ed051,'String');
@@ -895,36 +689,6 @@ function ed052_Callback(hObject, eventdata, handles)
 % hObject    handle to ed052 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed052,'String')))
-    set(handles.t053,'Visible','off');
-    set(handles.t054,'Visible','off');
-    set(handles.t055,'Visible','off');
-    set(handles.ed053,'Visible','off');
-    set(handles.ed054,'Visible','off');
-    set(handles.ed055,'Visible','off');
-    set(handles.ax051,'Visible','off');
-else
-    set(handles.t053,'Visible','on');
-    set(handles.t054,'Visible','on');
-    set(handles.t055,'Visible','on');
-    set(handles.ed053,'Visible','on');
-    set(handles.ed054,'Visible','on');
-    set(handles.ed055,'Visible','on');
-    set(handles.ax051,'Visible','on');
-    plot(handles.ax051,[0,1],[0,0],'m');
-end
-
-if( isempty(get(handles.ed051,'String')) && isempty(get(handles.ed052,'String')))
-    set(handles.tb061,'Visible','off');
-    set(handles.t061,'Visible','off');
-    set(handles.ed061,'Visible','off');
-else
-    
-    set(handles.tb061,'Visible','on');
-    set(handles.t061,'Visible','on');
-    set(handles.ed061,'Visible','on');
-end
-
 global y05
 if(~isempty(get(handles.ed052,'String')))
     y05 = get(handles.ed052,'String');
@@ -1023,7 +787,7 @@ function tb061_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb061,'Value'))
-    set(handles.tb061,'String','show');
+    set(handles.tb061,'String','6');
     set(handles.tb061,'BackGroundColor','g')
 else
     set(handles.tb061,'String','hide');
@@ -1037,25 +801,6 @@ function ed061_Callback(hObject, eventdata, handles)
 % hObject    handle to ed061 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed061,'String')))
-    set(handles.t062,'Visible','off');
-    set(handles.ed062,'Visible','off');    
-else
-    set(handles.t062,'Visible','on');
-    set(handles.ed062,'Visible','on');
-end
-
-if( isempty(get(handles.ed061,'String')) && isempty(get(handles.ed062,'String')))
-    set(handles.tb071,'Visible','off');
-    set(handles.t071,'Visible','off');
-    set(handles.ed071,'Visible','off');
-else
-    
-    set(handles.tb071,'Visible','on');
-    set(handles.t071,'Visible','on');
-    set(handles.ed071,'Visible','on');
-end
-
 global x06
 if(~isempty(get(handles.ed061,'String')))
     x06 = get(handles.ed061,'String');
@@ -1084,36 +829,6 @@ function ed062_Callback(hObject, eventdata, handles)
 % hObject    handle to ed062 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed062,'String')))
-    set(handles.t063,'Visible','off');
-    set(handles.t064,'Visible','off');
-    set(handles.t065,'Visible','off');
-    set(handles.ed063,'Visible','off');
-    set(handles.ed064,'Visible','off');
-    set(handles.ed065,'Visible','off');
-    set(handles.ax061,'Visible','off');
-else
-    set(handles.t063,'Visible','on');
-    set(handles.t064,'Visible','on');
-    set(handles.t065,'Visible','on');
-    set(handles.ed063,'Visible','on');
-    set(handles.ed064,'Visible','on');
-    set(handles.ed065,'Visible','on');
-    set(handles.ax061,'Visible','on');
-    plot(handles.ax061,[0,1],[0,0],'k:');
-end
-
-if( isempty(get(handles.ed061,'String')) && isempty(get(handles.ed062,'String')))
-    set(handles.tb071,'Visible','off');
-    set(handles.t071,'Visible','off');
-    set(handles.ed071,'Visible','off');
-else
-    
-    set(handles.tb071,'Visible','on');
-    set(handles.t071,'Visible','on');
-    set(handles.ed071,'Visible','on');
-end
-
 global y06
 if(~isempty(get(handles.ed062,'String')))
     y06 = get(handles.ed062,'String');
@@ -1212,7 +927,7 @@ function tb071_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb071,'Value'))
-    set(handles.tb071,'String','show');
+    set(handles.tb071,'String','7');
     set(handles.tb071,'BackGroundColor','g')
 else
     set(handles.tb071,'String','hide');
@@ -1226,25 +941,6 @@ function ed071_Callback(hObject, eventdata, handles)
 % hObject    handle to ed071 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed071,'String')))
-    set(handles.t072,'Visible','off');
-    set(handles.ed072,'Visible','off');    
-else
-    set(handles.t072,'Visible','on');
-    set(handles.ed072,'Visible','on');
-end
-
-if( isempty(get(handles.ed071,'String')) && isempty(get(handles.ed072,'String')))
-    set(handles.tb081,'Visible','off');
-    set(handles.t081,'Visible','off');
-    set(handles.ed081,'Visible','off');
-else
-    
-    set(handles.tb081,'Visible','on');
-    set(handles.t081,'Visible','on');
-    set(handles.ed081,'Visible','on');
-end
-
 global x07
 if(~isempty(get(handles.ed071,'String')))
     x07 = get(handles.ed071,'String');
@@ -1273,36 +969,6 @@ function ed072_Callback(hObject, eventdata, handles)
 % hObject    handle to ed072 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed072,'String')))
-    set(handles.t073,'Visible','off');
-    set(handles.t074,'Visible','off');
-    set(handles.t075,'Visible','off');
-    set(handles.ed073,'Visible','off');
-    set(handles.ed074,'Visible','off');
-    set(handles.ed075,'Visible','off');
-    set(handles.ax071,'Visible','off');
-else
-    set(handles.t073,'Visible','on');
-    set(handles.t074,'Visible','on');
-    set(handles.t075,'Visible','on');
-    set(handles.ed073,'Visible','on');
-    set(handles.ed074,'Visible','on');
-    set(handles.ed075,'Visible','on');
-    set(handles.ax071,'Visible','on');
-    plot(handles.ax071,[0,1],[0,0],'k');
-end
-
-if( isempty(get(handles.ed071,'String')) && isempty(get(handles.ed072,'String')))
-    set(handles.tb081,'Visible','off');
-    set(handles.t081,'Visible','off');
-    set(handles.ed081,'Visible','off');
-else
-    
-    set(handles.tb081,'Visible','on');
-    set(handles.t081,'Visible','on');
-    set(handles.ed081,'Visible','on');
-end
-
 global y07
 if(~isempty(get(handles.ed072,'String')))
     y07 = get(handles.ed072,'String');
@@ -1401,7 +1067,7 @@ function tb081_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb081,'Value'))
-    set(handles.tb081,'String','show');
+    set(handles.tb081,'String','8');
     set(handles.tb081,'BackGroundColor','g')
 else
     set(handles.tb081,'String','hide');
@@ -1415,25 +1081,6 @@ function ed081_Callback(hObject, eventdata, handles)
 % hObject    handle to ed081 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed081,'String')))
-    set(handles.t082,'Visible','off');
-    set(handles.ed082,'Visible','off');    
-else
-    set(handles.t082,'Visible','on');
-    set(handles.ed082,'Visible','on');
-end
-
-if( isempty(get(handles.ed081,'String')) && isempty(get(handles.ed082,'String')))
-    set(handles.tb091,'Visible','off');
-    set(handles.t091,'Visible','off');
-    set(handles.ed091,'Visible','off');
-else
-    
-    set(handles.tb091,'Visible','on');
-    set(handles.t091,'Visible','on');
-    set(handles.ed091,'Visible','on');
-end
-
 global x08
 if(~isempty(get(handles.ed081,'String')))
     x08 = get(handles.ed081,'String');
@@ -1462,36 +1109,6 @@ function ed082_Callback(hObject, eventdata, handles)
 % hObject    handle to ed082 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed082,'String')))
-    set(handles.t083,'Visible','off');
-    set(handles.t084,'Visible','off');
-    set(handles.t085,'Visible','off');
-    set(handles.ed083,'Visible','off');
-    set(handles.ed084,'Visible','off');
-    set(handles.ed085,'Visible','off');
-    set(handles.ax081,'Visible','off');
-else
-    set(handles.t083,'Visible','on');
-    set(handles.t084,'Visible','on');
-    set(handles.t085,'Visible','on');
-    set(handles.ed083,'Visible','on');
-    set(handles.ed084,'Visible','on');
-    set(handles.ed085,'Visible','on');
-    set(handles.ax081,'Visible','on');
-    plot(handles.ax081,[0,1],[0,0],'b:');
-end
-
-if( isempty(get(handles.ed081,'String')) && isempty(get(handles.ed082,'String')))
-    set(handles.tb091,'Visible','off');
-    set(handles.t091,'Visible','off');
-    set(handles.ed091,'Visible','off');
-else
-    
-    set(handles.tb091,'Visible','on');
-    set(handles.t091,'Visible','on');
-    set(handles.ed091,'Visible','on');
-end
-
 global y08
 if(~isempty(get(handles.ed082,'String')))
     y08 = get(handles.ed082,'String');
@@ -1590,7 +1207,7 @@ function tb091_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb091,'Value'))
-    set(handles.tb091,'String','show');
+    set(handles.tb091,'String','9');
     set(handles.tb091,'BackGroundColor','g')
 else
     set(handles.tb091,'String','hide');
@@ -1604,25 +1221,6 @@ function ed091_Callback(hObject, eventdata, handles)
 % hObject    handle to ed091 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed091,'String')))
-    set(handles.t092,'Visible','off');
-    set(handles.ed092,'Visible','off');    
-else
-    set(handles.t092,'Visible','on');
-    set(handles.ed092,'Visible','on');
-end
-
-if( isempty(get(handles.ed091,'String')) && isempty(get(handles.ed092,'String')))
-    set(handles.tb101,'Visible','off');
-    set(handles.t101,'Visible','off');
-    set(handles.ed101,'Visible','off');
-else
-    
-    set(handles.tb101,'Visible','on');
-    set(handles.t101,'Visible','on');
-    set(handles.ed101,'Visible','on');
-end
-
 global x09
 if(~isempty(get(handles.ed091,'String')))
     x09 = get(handles.ed091,'String');
@@ -1651,36 +1249,6 @@ function ed092_Callback(hObject, eventdata, handles)
 % hObject    handle to ed092 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed092,'String')))
-    set(handles.t093,'Visible','off');
-    set(handles.t094,'Visible','off');
-    set(handles.t095,'Visible','off');
-    set(handles.ed093,'Visible','off');
-    set(handles.ed094,'Visible','off');
-    set(handles.ed095,'Visible','off');
-    set(handles.ax091,'Visible','off');
-else
-    set(handles.t093,'Visible','on');
-    set(handles.t094,'Visible','on');
-    set(handles.t095,'Visible','on');
-    set(handles.ed093,'Visible','on');
-    set(handles.ed094,'Visible','on');
-    set(handles.ed095,'Visible','on');
-    set(handles.ax091,'Visible','on');
-    plot(handles.ax091,[0,1],[0,0],'r:');
-end
-
-if( isempty(get(handles.ed091,'String')) && isempty(get(handles.ed092,'String')))
-    set(handles.tb101,'Visible','off');
-    set(handles.t101,'Visible','off');
-    set(handles.ed101,'Visible','off');
-else
-    
-    set(handles.tb101,'Visible','on');
-    set(handles.t101,'Visible','on');
-    set(handles.ed101,'Visible','on');
-end
-
 global y09
 if(~isempty(get(handles.ed092,'String')))
     y09 = get(handles.ed092,'String');
@@ -1779,7 +1347,7 @@ function tb101_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if(get(handles.tb101,'Value'))
-    set(handles.tb101,'String','show');
+    set(handles.tb101,'String','10');
     set(handles.tb101,'BackGroundColor','g')
 else
     set(handles.tb101,'String','hide');
@@ -1793,14 +1361,6 @@ function ed101_Callback(hObject, eventdata, handles)
 % hObject    handle to ed101 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed101,'String')))
-    set(handles.t102,'Visible','off');
-    set(handles.ed102,'Visible','off');    
-else
-    set(handles.t102,'Visible','on');
-    set(handles.ed102,'Visible','on');
-end
-
 global x10
 if(~isempty(get(handles.ed101,'String')))
     x10 = get(handles.ed101,'String');
@@ -1829,25 +1389,6 @@ function ed102_Callback(hObject, eventdata, handles)
 % hObject    handle to ed102 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if(isempty(get(handles.ed102,'String')))
-    set(handles.t103,'Visible','off');
-    set(handles.t104,'Visible','off');
-    set(handles.t105,'Visible','off');
-    set(handles.ed103,'Visible','off');
-    set(handles.ed104,'Visible','off');
-    set(handles.ed105,'Visible','off');
-    set(handles.ax101,'Visible','off');
-else
-    set(handles.t103,'Visible','on');
-    set(handles.t104,'Visible','on');
-    set(handles.t105,'Visible','on');
-    set(handles.ed103,'Visible','on');
-    set(handles.ed104,'Visible','on');
-    set(handles.ed105,'Visible','on');
-    set(handles.ax101,'Visible','on');
-    plot(handles.ax101,[0,1],[0,0],'c:');
-end
-
 global y10
 if(~isempty(get(handles.ed102,'String')))
     y10 = get(handles.ed102,'String');
@@ -1946,7 +1487,65 @@ function clear_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 cla(handles.ax0)
+set(handles.ed011,'String',[]);
+set(handles.ed012,'String',[]);
+set(handles.ed013,'String','1');
+set(handles.ed014,'String','0');
+set(handles.ed015,'String','0');
 
+set(handles.ed021,'String',[]);
+set(handles.ed022,'String',[]);
+set(handles.ed023,'String','1');
+set(handles.ed024,'String','0');
+set(handles.ed025,'String','0');
+
+set(handles.ed031,'String',[]);
+set(handles.ed032,'String',[]);
+set(handles.ed033,'String','1');
+set(handles.ed034,'String','0');
+set(handles.ed035,'String','0');
+
+set(handles.ed041,'String',[]);
+set(handles.ed042,'String',[]);
+set(handles.ed043,'String','1');
+set(handles.ed044,'String','0');
+set(handles.ed045,'String','0');
+
+set(handles.ed051,'String',[]);
+set(handles.ed052,'String',[]);
+set(handles.ed053,'String','1');
+set(handles.ed054,'String','0');
+set(handles.ed055,'String','0');
+
+set(handles.ed061,'String',[]);
+set(handles.ed062,'String',[]);
+set(handles.ed063,'String','1');
+set(handles.ed064,'String','0');
+set(handles.ed065,'String','0');
+
+set(handles.ed071,'String',[]);
+set(handles.ed072,'String',[]);
+set(handles.ed073,'String','1');
+set(handles.ed074,'String','0');
+set(handles.ed075,'String','0');
+
+set(handles.ed081,'String',[]);
+set(handles.ed082,'String',[]);
+set(handles.ed083,'String','1');
+set(handles.ed084,'String','0');
+set(handles.ed085,'String','0');
+
+set(handles.ed091,'String',[]);
+set(handles.ed092,'String',[]);
+set(handles.ed093,'String','1');
+set(handles.ed094,'String','0');
+set(handles.ed095,'String','0');
+
+set(handles.ed101,'String',[]);
+set(handles.ed102,'String',[]);
+set(handles.ed103,'String','1');
+set(handles.ed104,'String','0');
+set(handles.ed105,'String','0');
 % --- Executes on button press in plot.
 function plot_Callback(hObject, eventdata, handles)
 % hObject    handle to plot (see GCBO)
@@ -1954,27 +1553,27 @@ function plot_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 clc
 cla(handles.ax0)
-global x01 %通过全局变量获得变量名
-global x02 %通过全局变量获得变量名
-global x03 %通过全局变量获得变量名
-global x04 %通过全局变量获得变量名
-global x05 %通过全局变量获得变量名
-global x06 %通过全局变量获得变量名
-global x07 %通过全局变量获得变量名
-global x08 %通过全局变量获得变量名
-global x09 %通过全局变量获得变量名
-global x10 %通过全局变量获得变量名
+global x01 
+global x02 
+global x03 
+global x04 
+global x05 
+global x06 
+global x07 
+global x08 
+global x09 
+global x10 
 
-global y01 %通过全局变量获得变量名
-global y02 %通过全局变量获得变量名
-global y03 %通过全局变量获得变量名
-global y04 %通过全局变量获得变量名
-global y05 %通过全局变量获得变量名
-global y06 %通过全局变量获得变量名
-global y07 %通过全局变量获得变量名
-global y08 %通过全局变量获得变量名
-global y09 %通过全局变量获得变量名
-global y10 %通过全局变量获得变量名
+global y01 
+global y02 
+global y03 
+global y04 
+global y05 
+global y06 
+global y07 
+global y08 
+global y09 
+global y10 
 
 global CmdStr
 global str1
@@ -2002,10 +1601,9 @@ global legend9
 global legend10
 global CMD2
 
-%打印第 1 组数据
 if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String')))
-    x = evalin('base',x01); %读Workspace数据
-    y = evalin('base',y01);%读Workspace数据
+    x = evalin('base',x01); 
+    y = evalin('base',y01);
     scale_cell = get(handles.ed013,'String');
     offsetX_cell = get(handles.ed014,'String');
     offsetY_cell = get(handles.ed015,'String');
@@ -2013,7 +1611,7 @@ if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String'
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
             str1 = strcat(x01,',',y01,'*',sprintf('%.2f',scale));
             legend1 = strcat(y01,'*',sprintf('%.2f',scale));
@@ -2025,7 +1623,7 @@ if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String'
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
             Xlabel = strcat(x01,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
@@ -2038,7 +1636,7 @@ if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String'
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+        
         if( offsetY ~= 0 )
             str1 = strcat(str1,'+','(',sprintf('%.2f',offsetY),')',',','''b''');
             legend1 = strcat(legend1,'+',sprintf('(%.2f)',offsetY));
@@ -2055,10 +1653,9 @@ if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String'
     end
 end
 
-%打印第 2 组数据
 if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String')))
-    x = evalin('base',x02); %读Workspace数据
-    y = evalin('base',y02);%读Workspace数据
+    x = evalin('base',x02); 
+    y = evalin('base',y02);
     scale_cell = get(handles.ed023,'String');
     offsetX_cell = get(handles.ed024,'String');
     offsetY_cell = get(handles.ed025,'String');
@@ -2066,7 +1663,7 @@ if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String'
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
             str2 = strcat(x02,',',y02,'*',sprintf('%.2f',scale));
             legend2 = strcat(y02,'*',sprintf('%.2f',scale));
@@ -2078,7 +1675,7 @@ if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String'
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
             Xlabel = strcat(x02,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
@@ -2091,7 +1688,7 @@ if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String'
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+        
         if( offsetY ~= 0 )
             str2 = strcat(str2,'+','(',sprintf('%.2f',offsetY),')',',','''r''');
             legend2 = strcat(legend2,'+',sprintf('(%.2f)',offsetY));
@@ -2108,52 +1705,51 @@ if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String'
     end
 end
 
-%打印第 3 组数据
-if( ~isempty(get(handles.ed031,'String')) && ~isempty(get(handles.ed032,'String')))% 2处
-    x = evalin('base',x03);% 1处
-    y = evalin('base',y03);% 1处
-    scale_cell = get(handles.ed033,'String');% 1处
-    offsetX_cell = get(handles.ed034,'String');% 1处
-    offsetY_cell = get(handles.ed035,'String');% 1处
+if( ~isempty(get(handles.ed031,'String')) && ~isempty(get(handles.ed032,'String')))
+    x = evalin('base',x03);
+    y = evalin('base',y03);
+    scale_cell = get(handles.ed033,'String');
+    offsetX_cell = get(handles.ed034,'String');
+    offsetY_cell = get(handles.ed035,'String');
 
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
-            str3 = strcat(x03,',',y03,'*',sprintf('%.2f',scale));% 3处
-            legend3 = strcat(y03,'*',sprintf('%.2f',scale));% 2处
+            str3 = strcat(x03,',',y03,'*',sprintf('%.2f',scale));
+            legend3 = strcat(y03,'*',sprintf('%.2f',scale));
         else
-            str3 = strcat(x03,',',y03);% 3处
-            legend3 = strcat(y03);% 2处
+            str3 = strcat(x03,',',y03);
+            legend3 = strcat(y03);
         end
     end
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
-            Xlabel = strcat(x03,'+','(',sprintf('%.2f',offsetX),')');% 1处
+            Xlabel = strcat(x03,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
-                str3 = strcat(Xlabel,',',y03,'*',sprintf('%.2f',scale));% 2处
+                str3 = strcat(Xlabel,',',y03,'*',sprintf('%.2f',scale));
             else
-                str3 = strcat(Xlabel,',',y03);% 2处
+                str3 = strcat(Xlabel,',',y03);
             end
         end
     end
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+        
         if( offsetY ~= 0 )
-            str3 = strcat(str3,'+','(',sprintf('%.2f',offsetY),')',',','''c''');% 2处 1处颜色
-            legend3 = strcat(legend3,'+',sprintf('(%.2f)',offsetY));% 2处
+            str3 = strcat(str3,'+','(',sprintf('%.2f',offsetY),')',',','''c''');
+            legend3 = strcat(legend3,'+',sprintf('(%.2f)',offsetY));
         else
-            str3 = strcat(str3,',','''c''');% 2处 1处颜色
+            str3 = strcat(str3,',','''c''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'c');%1处颜色
-    visible = get(handles.tb031,'Value');% 1处 
+    handle = plot(handles.ax0,xchg,ychg,'c');
+    visible = get(handles.tb031,'Value');
     if(visible)
         set(handle,'Visible','on');
     else
@@ -2161,52 +1757,51 @@ if( ~isempty(get(handles.ed031,'String')) && ~isempty(get(handles.ed032,'String'
     end
 end
 
-%打印第 4 组数据
-if( ~isempty(get(handles.ed041,'String')) && ~isempty(get(handles.ed042,'String')))% 2处
-    x = evalin('base',x04);% 1处
-    y = evalin('base',y04);% 1处
-    scale_cell = get(handles.ed043,'String');% 1处
-    offsetX_cell = get(handles.ed044,'String');% 1处
-    offsetY_cell = get(handles.ed045,'String');% 1处
+if( ~isempty(get(handles.ed041,'String')) && ~isempty(get(handles.ed042,'String')))
+    x = evalin('base',x04);
+    y = evalin('base',y04);
+    scale_cell = get(handles.ed043,'String');
+    offsetX_cell = get(handles.ed044,'String');
+    offsetY_cell = get(handles.ed045,'String');
 
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
-            str4 = strcat(x04,',',y04,'*',sprintf('%.2f',scale));% 3处
-            legend4 = strcat(y04,'*',sprintf('%.2f',scale));% 2处
+            str4 = strcat(x04,',',y04,'*',sprintf('%.2f',scale));
+            legend4 = strcat(y04,'*',sprintf('%.2f',scale));
         else
-            str4 = strcat(x04,',',y04);% 3处
-            legend4 = strcat(y04);% 2处
+            str4 = strcat(x04,',',y04);
+            legend4 = strcat(y04);
         end
     end
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
-            Xlabel = strcat(x04,'+','(',sprintf('%.2f',offsetX),')');% 1处
+            Xlabel = strcat(x04,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
-                str4 = strcat(Xlabel,',',y04,'*',sprintf('%.2f',scale));% 2处
+                str4 = strcat(Xlabel,',',y04,'*',sprintf('%.2f',scale));
             else
-                str4 = strcat(Xlabel,',',y04);% 2处
+                str4 = strcat(Xlabel,',',y04);
             end
         end
     end
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+        
         if( offsetY ~= 0 )
-            str4 = strcat(str4,'+','(',sprintf('%.2f',offsetY),')',',','''g''');% 2处 1处颜色
-            legend4 = strcat(legend4,'+',sprintf('(%.2f)',offsetY));% 2处
+            str4 = strcat(str4,'+','(',sprintf('%.2f',offsetY),')',',','''g''');
+            legend4 = strcat(legend4,'+',sprintf('(%.2f)',offsetY));
         else
-            str4 = strcat(str4,',','''g''');% 2处 1处颜色
+            str4 = strcat(str4,',','''g''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'g');%1处颜色
-    visible = get(handles.tb041,'Value');% 1处 
+    handle = plot(handles.ax0,xchg,ychg,'g');
+    visible = get(handles.tb041,'Value');
     if(visible)
         set(handle,'Visible','on');
     else
@@ -2214,52 +1809,51 @@ if( ~isempty(get(handles.ed041,'String')) && ~isempty(get(handles.ed042,'String'
     end
 end
 
-%打印第 5 组数据
-if( ~isempty(get(handles.ed051,'String')) && ~isempty(get(handles.ed052,'String')))% 2处
-    x = evalin('base',x05);% 1处
-    y = evalin('base',y05);% 1处
-    scale_cell = get(handles.ed053,'String');% 1处
-    offsetX_cell = get(handles.ed054,'String');% 1处
-    offsetY_cell = get(handles.ed055,'String');% 1处
+if( ~isempty(get(handles.ed051,'String')) && ~isempty(get(handles.ed052,'String')))
+    x = evalin('base',x05);
+    y = evalin('base',y05);
+    scale_cell = get(handles.ed053,'String');
+    offsetX_cell = get(handles.ed054,'String');
+    offsetY_cell = get(handles.ed055,'String');
 
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
-            str5 = strcat(x05,',',y05,'*',sprintf('%.2f',scale));% 3处
-            legend5 = strcat(y05,'*',sprintf('%.2f',scale));% 2处
+            str5 = strcat(x05,',',y05,'*',sprintf('%.2f',scale));
+            legend5 = strcat(y05,'*',sprintf('%.2f',scale));
         else
-            str5 = strcat(x05,',',y05);% 3处
-            legend5 = strcat(y05);% 2处
+            str5 = strcat(x05,',',y05);
+            legend5 = strcat(y05);
         end
     end
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
-            Xlabel = strcat(x05,'+','(',sprintf('%.2f',offsetX),')');% 1处
+            Xlabel = strcat(x05,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
-                str5 = strcat(Xlabel,',',y05,'*',sprintf('%.2f',scale));% 2处
+                str5 = strcat(Xlabel,',',y05,'*',sprintf('%.2f',scale));
             else
-                str5 = strcat(Xlabel,',',y05);% 2处
+                str5 = strcat(Xlabel,',',y05);
             end
         end
     end
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+        
         if( offsetY ~= 0 )
-            str5 = strcat(str5,'+','(',sprintf('%.2f',offsetY),')',',','''m''');% 2处 1处颜色
-            legend5 = strcat(legend5,'+',sprintf('(%.2f)',offsetY));% 2处
+            str5 = strcat(str5,'+','(',sprintf('%.2f',offsetY),')',',','''m''');
+            legend5 = strcat(legend5,'+',sprintf('(%.2f)',offsetY));
         else
-            str5 = strcat(str5,',','''m''');% 2处 1处颜色
+            str5 = strcat(str5,',','''m''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'m');%1处颜色
-    visible = get(handles.tb051,'Value');% 1处 
+    handle = plot(handles.ax0,xchg,ychg,'m');
+    visible = get(handles.tb051,'Value');
     if(visible)
         set(handle,'Visible','on');
     else
@@ -2267,52 +1861,51 @@ if( ~isempty(get(handles.ed051,'String')) && ~isempty(get(handles.ed052,'String'
     end
 end
 
-%打印第 6 组数据
-if( ~isempty(get(handles.ed061,'String')) && ~isempty(get(handles.ed062,'String')))% 2处
-    x = evalin('base',x06);% 1处
-    y = evalin('base',y06);% 1处
-    scale_cell = get(handles.ed063,'String');% 1处
-    offsetX_cell = get(handles.ed064,'String');% 1处
-    offsetY_cell = get(handles.ed065,'String');% 1处
+if( ~isempty(get(handles.ed061,'String')) && ~isempty(get(handles.ed062,'String')))
+    x = evalin('base',x06);
+    y = evalin('base',y06);
+    scale_cell = get(handles.ed063,'String');
+    offsetX_cell = get(handles.ed064,'String');
+    offsetY_cell = get(handles.ed065,'String');
 
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
-            str6 = strcat(x06,',',y06,'*',sprintf('%.2f',scale));% 3处
-            legend6 = strcat(y06,'*',sprintf('%.2f',scale));% 2处
+            str6 = strcat(x06,',',y06,'*',sprintf('%.2f',scale));
+            legend6 = strcat(y06,'*',sprintf('%.2f',scale));
         else
-            str6 = strcat(x06,',',y06);% 3处
-            legend6 = strcat(y06);% 2处
+            str6 = strcat(x06,',',y06);
+            legend6 = strcat(y06);
         end
     end
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
-            Xlabel = strcat(x06,'+','(',sprintf('%.2f',offsetX),')');% 1处
+            Xlabel = strcat(x06,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
-                str6 = strcat(Xlabel,',',y06,'*',sprintf('%.2f',scale));% 2处
+                str6 = strcat(Xlabel,',',y06,'*',sprintf('%.2f',scale));
             else
-                str6 = strcat(Xlabel,',',y06);% 2处
+                str6 = strcat(Xlabel,',',y06);
             end
         end
     end
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+        
         if( offsetY ~= 0 )
-            str6 = strcat(str6,'+','(',sprintf('%.2f',offsetY),')',',','''k:''');% 2处 1处颜色
-            legend6 = strcat(legend6,'+',sprintf('(%.2f)',offsetY));% 2处
+            str6 = strcat(str6,'+','(',sprintf('%.2f',offsetY),')',',','''k--''');
+            legend6 = strcat(legend6,'+',sprintf('(%.2f)',offsetY));
         else
-            str6 = strcat(str6,',','''k:''');% 2处 1处颜色
+            str6 = strcat(str6,',','''k--''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'k:');%1处颜色
-    visible = get(handles.tb061,'Value');% 1处 
+    handle = plot(handles.ax0,xchg,ychg,'k--');
+    visible = get(handles.tb061,'Value');
     if(visible)
         set(handle,'Visible','on');
     else
@@ -2320,52 +1913,51 @@ if( ~isempty(get(handles.ed061,'String')) && ~isempty(get(handles.ed062,'String'
     end
 end
 
-%打印第 7 组数据
-if( ~isempty(get(handles.ed071,'String')) && ~isempty(get(handles.ed072,'String')))% 2处
-    x = evalin('base',x07);% 1处
-    y = evalin('base',y07);% 1处
-    scale_cell = get(handles.ed073,'String');% 1处
-    offsetX_cell = get(handles.ed074,'String');% 1处
-    offsetY_cell = get(handles.ed075,'String');% 1处
+if( ~isempty(get(handles.ed071,'String')) && ~isempty(get(handles.ed072,'String')))
+    x = evalin('base',x07);
+    y = evalin('base',y07);
+    scale_cell = get(handles.ed073,'String');
+    offsetX_cell = get(handles.ed074,'String');
+    offsetY_cell = get(handles.ed075,'String');
 
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
-            str7 = strcat(x07,',',y07,'*',sprintf('%.2f',scale));% 3处
-            legend7 = strcat(y07,'*',sprintf('%.2f',scale));% 2处
+            str7 = strcat(x07,',',y07,'*',sprintf('%.2f',scale));
+            legend7 = strcat(y07,'*',sprintf('%.2f',scale));
         else
-            str7 = strcat(x07,',',y07);% 3处
-            legend7 = strcat(y07);% 2处
+            str7 = strcat(x07,',',y07);
+            legend7 = strcat(y07);
         end
     end
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
-            Xlabel = strcat(x07,'+','(',sprintf('%.2f',offsetX),')');% 1处
+            Xlabel = strcat(x07,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
-                str7 = strcat(Xlabel,',',y07,'*',sprintf('%.2f',scale));% 2处
+                str7 = strcat(Xlabel,',',y07,'*',sprintf('%.2f',scale));
             else
-                str7 = strcat(Xlabel,',',y07);% 2处
+                str7 = strcat(Xlabel,',',y07);
             end
         end
     end
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+
         if( offsetY ~= 0 )
-            str7 = strcat(str7,'+','(',sprintf('%.2f',offsetY),')',',','''k''');% 2处 1处颜色
-            legend7 = strcat(legend7,'+',sprintf('(%.2f)',offsetY));% 2处
+            str7 = strcat(str7,'+','(',sprintf('%.2f',offsetY),')',',','''r--''');
+            legend7 = strcat(legend7,'+',sprintf('(%.2f)',offsetY));
         else
-            str7 = strcat(str7,',','''k''');% 2处 1处颜色
+            str7 = strcat(str7,',','''r--''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'k');%1处颜色
-    visible = get(handles.tb071,'Value');% 1处 
+    handle = plot(handles.ax0,xchg,ychg,'r--');
+    visible = get(handles.tb071,'Value');
     if(visible)
         set(handle,'Visible','on');
     else
@@ -2373,52 +1965,51 @@ if( ~isempty(get(handles.ed071,'String')) && ~isempty(get(handles.ed072,'String'
     end
 end
 
-%打印第 8 组数据
-if( ~isempty(get(handles.ed081,'String')) && ~isempty(get(handles.ed082,'String')))% 2处
-    x = evalin('base',x08);% 1处
-    y = evalin('base',y08);% 1处
-    scale_cell = get(handles.ed083,'String');% 1处
-    offsetX_cell = get(handles.ed084,'String');% 1处
-    offsetY_cell = get(handles.ed085,'String');% 1处
+if( ~isempty(get(handles.ed081,'String')) && ~isempty(get(handles.ed082,'String')))
+    x = evalin('base',x08);
+    y = evalin('base',y08);
+    scale_cell = get(handles.ed083,'String');
+    offsetX_cell = get(handles.ed084,'String');
+    offsetY_cell = get(handles.ed085,'String');
 
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
-            str8 = strcat(x08,',',y08,'*',sprintf('%.2f',scale));% 3处
-            legend8 = strcat(y08,'*',sprintf('%.2f',scale));% 2处
+            str8 = strcat(x08,',',y08,'*',sprintf('%.2f',scale));
+            legend8 = strcat(y08,'*',sprintf('%.2f',scale));
         else
-            str8 = strcat(x08,',',y08);% 3处
-            legend8 = strcat(y08);% 2处
+            str8 = strcat(x08,',',y08);
+            legend8 = strcat(y08);
         end
     end
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
-            Xlabel = strcat(x08,'+','(',sprintf('%.2f',offsetX),')');% 1处
+            Xlabel = strcat(x08,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
-                str8 = strcat(Xlabel,',',y08,'*',sprintf('%.2f',scale));% 2处
+                str8 = strcat(Xlabel,',',y08,'*',sprintf('%.2f',scale));
             else
-                str8 = strcat(Xlabel,',',y08);% 2处
+                str8 = strcat(Xlabel,',',y08);
             end
         end
     end
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+        
         if( offsetY ~= 0 )
-            str8 = strcat(str8,'+','(',sprintf('%.2f',offsetY),')',',','''b:''');% 2处 1处颜色
-            legend8 = strcat(legend8,'+',sprintf('(%.2f)',offsetY));% 2处
+            str8 = strcat(str8,'+','(',sprintf('%.2f',offsetY),')',',','''b--''');
+            legend8 = strcat(legend8,'+',sprintf('(%.2f)',offsetY));
         else
-            str8 = strcat(str8,',','''b:''');% 2处 1处颜色
+            str8 = strcat(str8,',','''b--''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'b:');%1处颜色
-    visible = get(handles.tb081,'Value');% 1处 
+    handle = plot(handles.ax0,xchg,ychg,'b--');
+    visible = get(handles.tb081,'Value');
     if(visible)
         set(handle,'Visible','on');
     else
@@ -2426,52 +2017,51 @@ if( ~isempty(get(handles.ed081,'String')) && ~isempty(get(handles.ed082,'String'
     end
 end
 
-%打印第 9 组数据
-if( ~isempty(get(handles.ed091,'String')) && ~isempty(get(handles.ed092,'String')))% 2处
-    x = evalin('base',x09);% 1处
-    y = evalin('base',y09);% 1处
-    scale_cell = get(handles.ed093,'String');% 1处
-    offsetX_cell = get(handles.ed094,'String');% 1处
-    offsetY_cell = get(handles.ed095,'String');% 1处
+if( ~isempty(get(handles.ed091,'String')) && ~isempty(get(handles.ed092,'String')))
+    x = evalin('base',x09);
+    y = evalin('base',y09);
+    scale_cell = get(handles.ed093,'String');
+    offsetX_cell = get(handles.ed094,'String');
+    offsetY_cell = get(handles.ed095,'String');
 
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
-            str9 = strcat(x09,',',y09,'*',sprintf('%.2f',scale));% 3处
-            legend9 = strcat(y09,'*',sprintf('%.2f',scale));% 2处
+            str9 = strcat(x09,',',y09,'*',sprintf('%.2f',scale));
+            legend9 = strcat(y09,'*',sprintf('%.2f',scale));
         else
-            str9 = strcat(x09,',',y09);% 3处
-            legend9 = strcat(y09);% 2处
+            str9 = strcat(x09,',',y09);
+            legend9 = strcat(y09);
         end
     end
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
-            Xlabel = strcat(x09,'+','(',sprintf('%.2f',offsetX),')');% 1处
+            Xlabel = strcat(x09,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
-                str9 = strcat(Xlabel,',',y09,'*',sprintf('%.2f',scale));% 2处
+                str9 = strcat(Xlabel,',',y09,'*',sprintf('%.2f',scale));
             else
-                str9 = strcat(Xlabel,',',y09);% 2处
+                str9 = strcat(Xlabel,',',y09);
             end
         end
     end
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+        
         if( offsetY ~= 0 )
-            str9 = strcat(str9,'+','(',sprintf('%.2f',offsetY),')',',','''r:''');% 2处 1处颜色
-            legend9 = strcat(legend9,'+',sprintf('(%.2f)',offsetY));% 2处
+            str9 = strcat(str9,'+','(',sprintf('%.2f',offsetY),')',',','''g--''');
+            legend9 = strcat(legend9,'+',sprintf('(%.2f)',offsetY));
         else
-            str9 = strcat(str9,',','''r:''');% 2处 1处颜色
+            str9 = strcat(str9,',','''g--''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'r:');%1处颜色
-    visible = get(handles.tb091,'Value');% 1处 
+    handle = plot(handles.ax0,xchg,ychg,'g--');
+    visible = get(handles.tb091,'Value');
     if(visible)
         set(handle,'Visible','on');
     else
@@ -2479,52 +2069,51 @@ if( ~isempty(get(handles.ed091,'String')) && ~isempty(get(handles.ed092,'String'
     end
 end
 
-%打印第 10 组数据
-if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String')))% 2处
-    x = evalin('base',x10);% 1处
-    y = evalin('base',y10);% 1处
-    scale_cell = get(handles.ed103,'String');% 1处
-    offsetX_cell = get(handles.ed104,'String');% 1处
-    offsetY_cell = get(handles.ed105,'String');% 1处
+if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String')))
+    x = evalin('base',x10);
+    y = evalin('base',y10);
+    scale_cell = get(handles.ed103,'String');
+    offsetX_cell = get(handles.ed104,'String');
+    offsetY_cell = get(handles.ed105,'String');
 
     if(~isempty(scale_cell))
         scale = str2num(scale_cell);
         ychg = y * scale;
-        %拼接命令
+        
         if( scale ~= 1 )
-            str10 = strcat(x10,',',y10,'*',sprintf('%.2f',scale));% 3处
-            legend10 = strcat(y10,'*',sprintf('%.2f',scale));% 2处
+            str10 = strcat(x10,',',y10,'*',sprintf('%.2f',scale));
+            legend10 = strcat(y10,'*',sprintf('%.2f',scale));
         else
-            str10 = strcat(x10,',',y10);% 3处
-            legend10 = strcat(y10);% 2处
+            str10 = strcat(x10,',',y10);
+            legend10 = strcat(y10);
         end
     end
     if(~isempty(offsetX_cell))
         offsetX = str2num(offsetX_cell);
         xchg = x + offsetX;
-        %拼接命令
+        
         if( offsetX ~= 0)
-            Xlabel = strcat(x10,'+','(',sprintf('%.2f',offsetX),')');% 1处
+            Xlabel = strcat(x10,'+','(',sprintf('%.2f',offsetX),')');
             if( scale ~= 1 )
-                str10 = strcat(Xlabel,',',y10,'*',sprintf('%.2f',scale));% 2处
+                str10 = strcat(Xlabel,',',y10,'*',sprintf('%.2f',scale));
             else
-                str10 = strcat(Xlabel,',',y10);% 2处
+                str10 = strcat(Xlabel,',',y10);
             end
         end
     end
     if(~isempty(offsetY_cell))
         offsetY = str2num(offsetY_cell);
         ychg = ychg + offsetY;
-        %拼接命令
+        
         if( offsetY ~= 0 )
-            str10 = strcat(str10,'+','(',sprintf('%.2f',offsetY),')',',','''c:''');% 2处 1处颜色
-            legend10 = strcat(legend10,'+',sprintf('(%.2f)',offsetY));% 2处
+            str10 = strcat(str10,'+','(',sprintf('%.2f',offsetY),')',',','''m--''');
+            legend10 = strcat(legend10,'+',sprintf('(%.2f)',offsetY));
         else
-            str10 = strcat(str10,',','''c:''');% 2处 1处颜色
+            str10 = strcat(str10,',','''m--''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'c:');%1处颜色
-    visible = get(handles.tb101,'Value');% 1处 
+    handle = plot(handles.ax0,xchg,ychg,'m--');
+    visible = get(handles.tb101,'Value');
     if(visible)
         set(handle,'Visible','on');
     else
@@ -2532,7 +2121,7 @@ if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String'
     end
 end
 
-%拼接命令
+
 CmdStr = 'No Command';
 Legend = 'No Legend';
 if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String')) )
@@ -2670,13 +2259,14 @@ if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String'
         Legend = Legend;
     end
 end
-%打印命令
+
 CMD1 = 'plot';
 CMD2 = 'legend';
 if(strcmp(CmdStr,'No Command'))
 else
 disp(strcat(CMD1,'(',CmdStr,');'))
 disp(strcat(CMD2,'(',Legend,');'))
+eval(strcat(CMD2,'(handles.ax0,',Legend,');'))
 end
 
 
@@ -2686,3 +2276,398 @@ function open_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 APMBinaryLog
+lists = evalin('base', 'names');
+set(handles.popupmenu2,'string',lists);
+
+
+% --- Executes on selection change in popupmenu1.
+function popupmenu1_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu1 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu1
+
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in popupmenu2.
+function popupmenu2_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+list_2=get(handles.popupmenu2,'String');
+val_2=get(handles.popupmenu2,'Value');
+global selectedval_2
+selectedval_2=list_2{val_2};
+valselected_2=evalin('base',selectedval_2);
+fieldname = fieldnames(valselected_2);
+
+j = 1;
+for i = 1:size(fieldname, 1)
+    if isequal(fieldname{i}, 'TimeUS') || isequal(fieldname{i}, 'n')
+        continue;
+    end
+    fields{j} = fieldname{i};
+    j = j+1;
+end
+set(handles.popupmenu3,'string',fields);
+
+xlabel = 'none';
+if get(handles.radiobutton1,'Value')
+    if get(handles.radiobutton2,'Value')
+        xlabel = strcat(selectedval_2,'.','TimeUS');
+    else
+        xlabel = strcat(selectedval_2,'.','n');
+    end
+    
+    switch get(handles.popupmenu1,'Value')
+        case 1
+            set(handles.ed011,'String',xlabel)
+            global x01
+            if(~isempty(get(handles.ed011,'String')))
+                x01 = get(handles.ed011,'String');
+            else
+                x01 = [];
+            end
+        case 2
+            set(handles.ed021,'String',xlabel)
+            global x02
+            if(~isempty(get(handles.ed021,'String')))
+                x02 = get(handles.ed021,'String');
+            else
+                x02 = [];
+            end
+        case 3
+            set(handles.ed031,'String',xlabel)
+            global x03
+            if(~isempty(get(handles.ed031,'String')))
+                x03 = get(handles.ed031,'String');
+            else
+                x03 = [];
+            end
+        case 4
+            set(handles.ed041,'String',xlabel)
+            global x04
+            if(~isempty(get(handles.ed041,'String')))
+                x04 = get(handles.ed041,'String');
+            else
+                x04 = [];
+            end
+        case 5
+            set(handles.ed051,'String',xlabel)
+            global x05
+            if(~isempty(get(handles.ed051,'String')))
+                x05 = get(handles.ed051,'String');
+            else
+                x05 = [];
+            end
+        case 6
+            set(handles.ed061,'String',xlabel)
+            global x06
+            if(~isempty(get(handles.ed061,'String')))
+                x06 = get(handles.ed061,'String');
+            else
+                x06 = [];
+            end
+        case 7
+            set(handles.ed071,'String',xlabel)
+            global x07
+            if(~isempty(get(handles.ed071,'String')))
+                x07 = get(handles.ed071,'String');
+            else
+                x07 = [];
+            end
+        case 8
+            set(handles.ed081,'String',xlabel)
+            global x08
+            if(~isempty(get(handles.ed081,'String')))
+                x08 = get(handles.ed081,'String');
+            else
+                x08 = [];
+            end
+        case 9
+            set(handles.ed091,'String',xlabel)
+            global x09
+            if(~isempty(get(handles.ed091,'String')))
+                x09 = get(handles.ed091,'String');
+            else
+                x09 = [];
+            end
+        case 10
+            set(handles.ed101,'String',xlabel)
+            global x10
+            if(~isempty(get(handles.ed101,'String')))
+                x10 = get(handles.ed101,'String');
+            else
+                x10 = [];
+            end
+    end
+end
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu2 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu2
+
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in popupmenu3.
+function popupmenu3_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+list_3=get(handles.popupmenu3,'String');
+val_3=get(handles.popupmenu3,'Value');
+selectedval_3=list_3{val_3};
+
+ylabel = 'none';
+global selectedval_2
+ylabel = strcat(selectedval_2,'.',selectedval_3);
+pop1 = get(handles.popupmenu1,'Value');
+if get(handles.radiobutton1,'Value')
+    switch pop1
+        case 1
+            set(handles.ed012,'String',ylabel)
+            global y01
+            if(~isempty(get(handles.ed012,'String')))
+                y01 = get(handles.ed012,'String');
+            else
+                y01 = [];
+            end
+        case 2
+            set(handles.ed022,'String',ylabel)
+            global y02
+            if(~isempty(get(handles.ed022,'String')))
+                y02 = get(handles.ed022,'String');
+            else
+                y02 = [];
+            end
+        case 3
+            set(handles.ed032,'String',ylabel)
+            global y03
+            if(~isempty(get(handles.ed032,'String')))
+                y03 = get(handles.ed032,'String');
+            else
+                y03 = [];
+            end
+        case 4
+            set(handles.ed042,'String',ylabel)
+            global y04
+            if(~isempty(get(handles.ed042,'String')))
+                y04 = get(handles.ed042,'String');
+            else
+                y04 = [];
+            end
+        case 5
+            set(handles.ed052,'String',ylabel)
+            global y05
+            if(~isempty(get(handles.ed052,'String')))
+                y05 = get(handles.ed052,'String');
+            else
+                y05 = [];
+            end
+        case 6
+            set(handles.ed062,'String',ylabel)
+            global y06
+            if(~isempty(get(handles.ed062,'String')))
+                y06 = get(handles.ed062,'String');
+            else
+                y06 = [];
+            end
+        case 7
+            set(handles.ed072,'String',ylabel)
+            global y07
+            if(~isempty(get(handles.ed072,'String')))
+                y07 = get(handles.ed072,'String');
+            else
+                y07 = [];
+            end
+        case 8
+            set(handles.ed082,'String',ylabel)
+            global y08
+            if(~isempty(get(handles.ed082,'String')))
+                y08 = get(handles.ed082,'String');
+            else
+                y08 = [];
+            end
+        case 9
+            set(handles.ed092,'String',ylabel)
+            global y09
+            if(~isempty(get(handles.ed092,'String')))
+                y09 = get(handles.ed092,'String');
+            else
+                y09 = [];
+            end
+        case 10
+            set(handles.ed102,'String',ylabel)
+            global y10
+            if(~isempty(get(handles.ed102,'String')))
+                y10 = get(handles.ed102,'String');
+            else
+                y10 = [];
+            end
+    end
+
+    if get(handles.radiobutton3,'Value')
+        if get(handles.radiobutton2,'Value')
+            xlabel = strcat(selectedval_2,'.','TimeUS');
+        else
+            xlabel = strcat(selectedval_2,'.','n');
+        end
+
+        if pop1 < 10
+            set(handles.popupmenu1,'Value',pop1+1);
+        end
+
+        switch pop1
+            case 1
+                set(handles.ed011,'String',xlabel)
+                global x01
+                if(~isempty(get(handles.ed011,'String')))
+                    x01 = get(handles.ed011,'String');
+                else
+                    x01 = [];
+                end
+            case 2
+                set(handles.ed021,'String',xlabel)
+                global x02
+                if(~isempty(get(handles.ed021,'String')))
+                    x02 = get(handles.ed021,'String');
+                else
+                    x02 = [];
+                end
+            case 3
+                set(handles.ed031,'String',xlabel)
+                global x03
+                if(~isempty(get(handles.ed031,'String')))
+                    x03 = get(handles.ed031,'String');
+                else
+                    x03 = [];
+                end
+            case 4
+                set(handles.ed041,'String',xlabel)
+                global x04
+                if(~isempty(get(handles.ed041,'String')))
+                    x04 = get(handles.ed041,'String');
+                else
+                    x04 = [];
+                end
+            case 5
+                set(handles.ed051,'String',xlabel)
+                global x05
+                if(~isempty(get(handles.ed051,'String')))
+                    x05 = get(handles.ed051,'String');
+                else
+                    x05 = [];
+                end
+            case 6
+                set(handles.ed061,'String',xlabel)
+                global x06
+                if(~isempty(get(handles.ed061,'String')))
+                    x06 = get(handles.ed061,'String');
+                else
+                    x06 = [];
+                end
+            case 7
+                set(handles.ed071,'String',xlabel)
+                global x07
+                if(~isempty(get(handles.ed071,'String')))
+                    x07 = get(handles.ed071,'String');
+                else
+                    x07 = [];
+                end
+            case 8
+                set(handles.ed081,'String',xlabel)
+                global x08
+                if(~isempty(get(handles.ed081,'String')))
+                    x08 = get(handles.ed081,'String');
+                else
+                    x08 = [];
+                end
+            case 9
+                set(handles.ed091,'String',xlabel)
+                global x09
+                if(~isempty(get(handles.ed091,'String')))
+                    x09 = get(handles.ed091,'String');
+                else
+                    x09 = [];
+                end
+            case 10
+                set(handles.ed101,'String',xlabel)
+                global x10
+                if(~isempty(get(handles.ed101,'String')))
+                    x10 = get(handles.ed101,'String');
+                else
+                    x10 = [];
+                end
+        end
+    end
+end
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu3 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu3
+
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in radiobutton1.
+function radiobutton1_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+if get(handles.radiobutton1,'Value')
+    set(handles.radiobutton3,'Value',1)
+end
+% Hint: get(hObject,'Value') returns toggle state of radiobutton1
+
+
+% --- Executes on button press in radiobutton2.
+function radiobutton2_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of radiobutton2
+
+
+% --- Executes on button press in radiobutton3.
+function radiobutton3_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+if get(handles.radiobutton3,'Value')
+    set(handles.radiobutton1,'Value',1)
+end
+% Hint: get(hObject,'Value') returns toggle state of radiobutton3
