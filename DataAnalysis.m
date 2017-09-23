@@ -1613,8 +1613,8 @@ if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str1 = strcat(x01,',',y01,'*',sprintf('%.2f',scale));
-            legend1 = strcat(y01,'*',sprintf('%.2f',scale));
+            str1 = strcat(x01,',(',y01,')*',sprintf('%.5f',scale));
+            legend1 = strcat('(',y01,')','*',sprintf('%.5f',scale));
         else
             str1 = strcat(x01,',',y01);
             legend1 = strcat(y01);
@@ -1625,9 +1625,9 @@ if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x01,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x01,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str1 = strcat(Xlabel,',',y01,'*',sprintf('%.2f',scale));
+                str1 = strcat(Xlabel,',(',y01,')*',sprintf('%.5f',scale));
             else
                 str1 = strcat(Xlabel,',',y01);
             end
@@ -1638,8 +1638,8 @@ if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String'
         ychg = ychg + offsetY;
         
         if( offsetY ~= 0 )
-            str1 = strcat(str1,'+','(',sprintf('%.2f',offsetY),')',',','''b''');
-            legend1 = strcat(legend1,'+',sprintf('(%.2f)',offsetY));
+            str1 = strcat(str1,'+','(',sprintf('%.5f',offsetY),')',',','''b''');
+            legend1 = strcat(legend1,'+',sprintf('(%.5f)',offsetY));
         else
             str1 = strcat(str1,',','''b''');
         end
@@ -1665,8 +1665,8 @@ if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str2 = strcat(x02,',',y02,'*',sprintf('%.2f',scale));
-            legend2 = strcat(y02,'*',sprintf('%.2f',scale));
+            str2 = strcat(x02,',(',y02,')*',sprintf('%.5f',scale));
+            legend2 = strcat('(',y02,')','*',sprintf('%.5f',scale));
         else
             str2 = strcat(x02,',',y02);
             legend2 = strcat(y02);
@@ -1677,9 +1677,9 @@ if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x02,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x02,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str2 = strcat(Xlabel,',',y02,'*',sprintf('%.2f',scale));
+                str2 = strcat(Xlabel,',(',y02,')*',sprintf('%.5f',scale));
             else
                 str2 = strcat(Xlabel,',',y02);
             end
@@ -1690,8 +1690,8 @@ if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String'
         ychg = ychg + offsetY;
         
         if( offsetY ~= 0 )
-            str2 = strcat(str2,'+','(',sprintf('%.2f',offsetY),')',',','''r''');
-            legend2 = strcat(legend2,'+',sprintf('(%.2f)',offsetY));
+            str2 = strcat(str2,'+','(',sprintf('%.5f',offsetY),')',',','''r''');
+            legend2 = strcat(legend2,'+',sprintf('(%.5f)',offsetY));
         else
             str2 = strcat(str2,',','''r''');
         end
@@ -1717,8 +1717,8 @@ if( ~isempty(get(handles.ed031,'String')) && ~isempty(get(handles.ed032,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str3 = strcat(x03,',',y03,'*',sprintf('%.2f',scale));
-            legend3 = strcat(y03,'*',sprintf('%.2f',scale));
+            str3 = strcat(x03,',(',y03,')*',sprintf('%.5f',scale));
+            legend3 = strcat('(',y03,')','*',sprintf('%.5f',scale));
         else
             str3 = strcat(x03,',',y03);
             legend3 = strcat(y03);
@@ -1729,9 +1729,9 @@ if( ~isempty(get(handles.ed031,'String')) && ~isempty(get(handles.ed032,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x03,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x03,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str3 = strcat(Xlabel,',',y03,'*',sprintf('%.2f',scale));
+                str3 = strcat(Xlabel,',(',y03,')*',sprintf('%.5f',scale));
             else
                 str3 = strcat(Xlabel,',',y03);
             end
@@ -1742,8 +1742,8 @@ if( ~isempty(get(handles.ed031,'String')) && ~isempty(get(handles.ed032,'String'
         ychg = ychg + offsetY;
         
         if( offsetY ~= 0 )
-            str3 = strcat(str3,'+','(',sprintf('%.2f',offsetY),')',',','''c''');
-            legend3 = strcat(legend3,'+',sprintf('(%.2f)',offsetY));
+            str3 = strcat(str3,'+','(',sprintf('%.5f',offsetY),')',',','''c''');
+            legend3 = strcat(legend3,'+',sprintf('(%.5f)',offsetY));
         else
             str3 = strcat(str3,',','''c''');
         end
@@ -1769,8 +1769,8 @@ if( ~isempty(get(handles.ed041,'String')) && ~isempty(get(handles.ed042,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str4 = strcat(x04,',',y04,'*',sprintf('%.2f',scale));
-            legend4 = strcat(y04,'*',sprintf('%.2f',scale));
+            str4 = strcat(x04,',(',y04,')*',sprintf('%.5f',scale));
+            legend4 = strcat('(',y04,')','*',sprintf('%.5f',scale));
         else
             str4 = strcat(x04,',',y04);
             legend4 = strcat(y04);
@@ -1781,9 +1781,9 @@ if( ~isempty(get(handles.ed041,'String')) && ~isempty(get(handles.ed042,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x04,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x04,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str4 = strcat(Xlabel,',',y04,'*',sprintf('%.2f',scale));
+                str4 = strcat(Xlabel,',(',y04,')*',sprintf('%.5f',scale));
             else
                 str4 = strcat(Xlabel,',',y04);
             end
@@ -1794,8 +1794,8 @@ if( ~isempty(get(handles.ed041,'String')) && ~isempty(get(handles.ed042,'String'
         ychg = ychg + offsetY;
         
         if( offsetY ~= 0 )
-            str4 = strcat(str4,'+','(',sprintf('%.2f',offsetY),')',',','''g''');
-            legend4 = strcat(legend4,'+',sprintf('(%.2f)',offsetY));
+            str4 = strcat(str4,'+','(',sprintf('%.5f',offsetY),')',',','''g''');
+            legend4 = strcat(legend4,'+',sprintf('(%.5f)',offsetY));
         else
             str4 = strcat(str4,',','''g''');
         end
@@ -1821,8 +1821,8 @@ if( ~isempty(get(handles.ed051,'String')) && ~isempty(get(handles.ed052,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str5 = strcat(x05,',',y05,'*',sprintf('%.2f',scale));
-            legend5 = strcat(y05,'*',sprintf('%.2f',scale));
+            str5 = strcat(x05,',(',y05,')*',sprintf('%.5f',scale));
+            legend5 = strcat('(',y05,')','*',sprintf('%.5f',scale));
         else
             str5 = strcat(x05,',',y05);
             legend5 = strcat(y05);
@@ -1833,9 +1833,9 @@ if( ~isempty(get(handles.ed051,'String')) && ~isempty(get(handles.ed052,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x05,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x05,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str5 = strcat(Xlabel,',',y05,'*',sprintf('%.2f',scale));
+                str5 = strcat(Xlabel,',(',y05,')*',sprintf('%.5f',scale));
             else
                 str5 = strcat(Xlabel,',',y05);
             end
@@ -1846,8 +1846,8 @@ if( ~isempty(get(handles.ed051,'String')) && ~isempty(get(handles.ed052,'String'
         ychg = ychg + offsetY;
         
         if( offsetY ~= 0 )
-            str5 = strcat(str5,'+','(',sprintf('%.2f',offsetY),')',',','''m''');
-            legend5 = strcat(legend5,'+',sprintf('(%.2f)',offsetY));
+            str5 = strcat(str5,'+','(',sprintf('%.5f',offsetY),')',',','''m''');
+            legend5 = strcat(legend5,'+',sprintf('(%.5f)',offsetY));
         else
             str5 = strcat(str5,',','''m''');
         end
@@ -1873,8 +1873,8 @@ if( ~isempty(get(handles.ed061,'String')) && ~isempty(get(handles.ed062,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str6 = strcat(x06,',',y06,'*',sprintf('%.2f',scale));
-            legend6 = strcat(y06,'*',sprintf('%.2f',scale));
+            str6 = strcat(x06,',(',y06,')*',sprintf('%.5f',scale));
+            legend6 = strcat('(',y06,')','*',sprintf('%.5f',scale));
         else
             str6 = strcat(x06,',',y06);
             legend6 = strcat(y06);
@@ -1885,9 +1885,9 @@ if( ~isempty(get(handles.ed061,'String')) && ~isempty(get(handles.ed062,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x06,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x06,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str6 = strcat(Xlabel,',',y06,'*',sprintf('%.2f',scale));
+                str6 = strcat(Xlabel,',(',y06,')*',sprintf('%.5f',scale));
             else
                 str6 = strcat(Xlabel,',',y06);
             end
@@ -1898,13 +1898,13 @@ if( ~isempty(get(handles.ed061,'String')) && ~isempty(get(handles.ed062,'String'
         ychg = ychg + offsetY;
         
         if( offsetY ~= 0 )
-            str6 = strcat(str6,'+','(',sprintf('%.2f',offsetY),')',',','''k--''');
-            legend6 = strcat(legend6,'+',sprintf('(%.2f)',offsetY));
+            str6 = strcat(str6,'+','(',sprintf('%.5f',offsetY),')',',','''-k.''');
+            legend6 = strcat(legend6,'+',sprintf('(%.5f)',offsetY));
         else
-            str6 = strcat(str6,',','''k--''');
+            str6 = strcat(str6,',','''-k.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'k--');
+    handle = plot(handles.ax0,xchg,ychg,'-k.');
     visible = get(handles.tb061,'Value');
     if(visible)
         set(handle,'Visible','on');
@@ -1925,8 +1925,8 @@ if( ~isempty(get(handles.ed071,'String')) && ~isempty(get(handles.ed072,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str7 = strcat(x07,',',y07,'*',sprintf('%.2f',scale));
-            legend7 = strcat(y07,'*',sprintf('%.2f',scale));
+            str7 = strcat(x07,',(',y07,')*',sprintf('%.5f',scale));
+            legend7 = strcat('(',y07,')','*',sprintf('%.5f',scale));
         else
             str7 = strcat(x07,',',y07);
             legend7 = strcat(y07);
@@ -1937,9 +1937,9 @@ if( ~isempty(get(handles.ed071,'String')) && ~isempty(get(handles.ed072,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x07,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x07,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str7 = strcat(Xlabel,',',y07,'*',sprintf('%.2f',scale));
+                str7 = strcat(Xlabel,',(',y07,')*',sprintf('%.5f',scale));
             else
                 str7 = strcat(Xlabel,',',y07);
             end
@@ -1950,13 +1950,13 @@ if( ~isempty(get(handles.ed071,'String')) && ~isempty(get(handles.ed072,'String'
         ychg = ychg + offsetY;
 
         if( offsetY ~= 0 )
-            str7 = strcat(str7,'+','(',sprintf('%.2f',offsetY),')',',','''r--''');
-            legend7 = strcat(legend7,'+',sprintf('(%.2f)',offsetY));
+            str7 = strcat(str7,'+','(',sprintf('%.5f',offsetY),')',',','''-r.''');
+            legend7 = strcat(legend7,'+',sprintf('(%.5f)',offsetY));
         else
-            str7 = strcat(str7,',','''r--''');
+            str7 = strcat(str7,',','''-r.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'r--');
+    handle = plot(handles.ax0,xchg,ychg,'-r.');
     visible = get(handles.tb071,'Value');
     if(visible)
         set(handle,'Visible','on');
@@ -1977,8 +1977,8 @@ if( ~isempty(get(handles.ed081,'String')) && ~isempty(get(handles.ed082,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str8 = strcat(x08,',',y08,'*',sprintf('%.2f',scale));
-            legend8 = strcat(y08,'*',sprintf('%.2f',scale));
+            str8 = strcat(x08,',(',y08,')*',sprintf('%.5f',scale));
+            legend8 = strcat('(',y08,')','*',sprintf('%.5f',scale));
         else
             str8 = strcat(x08,',',y08);
             legend8 = strcat(y08);
@@ -1989,9 +1989,9 @@ if( ~isempty(get(handles.ed081,'String')) && ~isempty(get(handles.ed082,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x08,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x08,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str8 = strcat(Xlabel,',',y08,'*',sprintf('%.2f',scale));
+                str8 = strcat(Xlabel,',(',y08,')*',sprintf('%.5f',scale));
             else
                 str8 = strcat(Xlabel,',',y08);
             end
@@ -2002,13 +2002,13 @@ if( ~isempty(get(handles.ed081,'String')) && ~isempty(get(handles.ed082,'String'
         ychg = ychg + offsetY;
         
         if( offsetY ~= 0 )
-            str8 = strcat(str8,'+','(',sprintf('%.2f',offsetY),')',',','''b--''');
-            legend8 = strcat(legend8,'+',sprintf('(%.2f)',offsetY));
+            str8 = strcat(str8,'+','(',sprintf('%.5f',offsetY),')',',','''-b.''');
+            legend8 = strcat(legend8,'+',sprintf('(%.5f)',offsetY));
         else
-            str8 = strcat(str8,',','''b--''');
+            str8 = strcat(str8,',','''-b.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'b--');
+    handle = plot(handles.ax0,xchg,ychg,'-b.');
     visible = get(handles.tb081,'Value');
     if(visible)
         set(handle,'Visible','on');
@@ -2029,8 +2029,8 @@ if( ~isempty(get(handles.ed091,'String')) && ~isempty(get(handles.ed092,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str9 = strcat(x09,',',y09,'*',sprintf('%.2f',scale));
-            legend9 = strcat(y09,'*',sprintf('%.2f',scale));
+            str9 = strcat(x09,',(',y09,')*',sprintf('%.5f',scale));
+            legend9 = strcat('(',y09,')','*',sprintf('%.5f',scale));
         else
             str9 = strcat(x09,',',y09);
             legend9 = strcat(y09);
@@ -2041,9 +2041,9 @@ if( ~isempty(get(handles.ed091,'String')) && ~isempty(get(handles.ed092,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x09,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x09,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str9 = strcat(Xlabel,',',y09,'*',sprintf('%.2f',scale));
+                str9 = strcat(Xlabel,',(',y09,')*',sprintf('%.5f',scale));
             else
                 str9 = strcat(Xlabel,',',y09);
             end
@@ -2054,13 +2054,13 @@ if( ~isempty(get(handles.ed091,'String')) && ~isempty(get(handles.ed092,'String'
         ychg = ychg + offsetY;
         
         if( offsetY ~= 0 )
-            str9 = strcat(str9,'+','(',sprintf('%.2f',offsetY),')',',','''g--''');
-            legend9 = strcat(legend9,'+',sprintf('(%.2f)',offsetY));
+            str9 = strcat(str9,'+','(',sprintf('%.5f',offsetY),')',',','''-g.''');
+            legend9 = strcat(legend9,'+',sprintf('(%.5f)',offsetY));
         else
-            str9 = strcat(str9,',','''g--''');
+            str9 = strcat(str9,',','''-g.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'g--');
+    handle = plot(handles.ax0,xchg,ychg,'-g.');
     visible = get(handles.tb091,'Value');
     if(visible)
         set(handle,'Visible','on');
@@ -2081,8 +2081,8 @@ if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String'
         ychg = y * scale;
         
         if( scale ~= 1 )
-            str10 = strcat(x10,',',y10,'*',sprintf('%.2f',scale));
-            legend10 = strcat(y10,'*',sprintf('%.2f',scale));
+            str10 = strcat(x10,',(',y10,')*',sprintf('%.5f',scale));
+            legend10 = strcat('(',y10,')','*',sprintf('%.5f',scale));
         else
             str10 = strcat(x10,',',y10);
             legend10 = strcat(y10);
@@ -2093,9 +2093,9 @@ if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String'
         xchg = x + offsetX;
         
         if( offsetX ~= 0)
-            Xlabel = strcat(x10,'+','(',sprintf('%.2f',offsetX),')');
+            Xlabel = strcat(x10,'+','(',sprintf('%.5f',offsetX),')');
             if( scale ~= 1 )
-                str10 = strcat(Xlabel,',',y10,'*',sprintf('%.2f',scale));
+                str10 = strcat(Xlabel,',(',y10,')*',sprintf('%.5f',scale));
             else
                 str10 = strcat(Xlabel,',',y10);
             end
@@ -2106,13 +2106,13 @@ if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String'
         ychg = ychg + offsetY;
         
         if( offsetY ~= 0 )
-            str10 = strcat(str10,'+','(',sprintf('%.2f',offsetY),')',',','''m--''');
-            legend10 = strcat(legend10,'+',sprintf('(%.2f)',offsetY));
+            str10 = strcat(str10,'+','(',sprintf('%.5f',offsetY),')',',','''-m.''');
+            legend10 = strcat(legend10,'+',sprintf('(%.5f)',offsetY));
         else
-            str10 = strcat(str10,',','''m--''');
+            str10 = strcat(str10,',','''-m.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'m--');
+    handle = plot(handles.ax0,xchg,ychg,'-m.');
     visible = get(handles.tb101,'Value');
     if(visible)
         set(handle,'Visible','on');
