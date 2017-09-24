@@ -1601,7 +1601,7 @@ global legend9
 global legend10
 global CMD2
 
-if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String')))
+if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String'))) && get(handles.tb011,'Value')
     x = evalin('base',x01); 
     y = evalin('base',y01);
     scale_cell = get(handles.ed013,'String');
@@ -1644,16 +1644,10 @@ if( ~isempty(get(handles.ed011,'String')) && ~isempty(get(handles.ed012,'String'
             str1 = strcat(str1,',','''b''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'b');
-    visible = get(handles.tb011,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'b');
 end
 
-if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String')))
+if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String'))) && get(handles.tb021,'Value')
     x = evalin('base',x02); 
     y = evalin('base',y02);
     scale_cell = get(handles.ed023,'String');
@@ -1696,16 +1690,10 @@ if( ~isempty(get(handles.ed021,'String')) && ~isempty(get(handles.ed022,'String'
             str2 = strcat(str2,',','''r''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'r');
-    visible = get(handles.tb021,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'r');
 end
 
-if( ~isempty(get(handles.ed031,'String')) && ~isempty(get(handles.ed032,'String')))
+if( ~isempty(get(handles.ed031,'String')) && ~isempty(get(handles.ed032,'String'))) && get(handles.tb031,'Value')
     x = evalin('base',x03);
     y = evalin('base',y03);
     scale_cell = get(handles.ed033,'String');
@@ -1748,16 +1736,10 @@ if( ~isempty(get(handles.ed031,'String')) && ~isempty(get(handles.ed032,'String'
             str3 = strcat(str3,',','''c''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'c');
-    visible = get(handles.tb031,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'c');
 end
 
-if( ~isempty(get(handles.ed041,'String')) && ~isempty(get(handles.ed042,'String')))
+if( ~isempty(get(handles.ed041,'String')) && ~isempty(get(handles.ed042,'String'))) && get(handles.tb041,'Value')
     x = evalin('base',x04);
     y = evalin('base',y04);
     scale_cell = get(handles.ed043,'String');
@@ -1800,16 +1782,10 @@ if( ~isempty(get(handles.ed041,'String')) && ~isempty(get(handles.ed042,'String'
             str4 = strcat(str4,',','''g''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'g');
-    visible = get(handles.tb041,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'g');
 end
 
-if( ~isempty(get(handles.ed051,'String')) && ~isempty(get(handles.ed052,'String')))
+if( ~isempty(get(handles.ed051,'String')) && ~isempty(get(handles.ed052,'String'))) && get(handles.tb051,'Value')
     x = evalin('base',x05);
     y = evalin('base',y05);
     scale_cell = get(handles.ed053,'String');
@@ -1852,16 +1828,10 @@ if( ~isempty(get(handles.ed051,'String')) && ~isempty(get(handles.ed052,'String'
             str5 = strcat(str5,',','''m''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'m');
-    visible = get(handles.tb051,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'m');
 end
 
-if( ~isempty(get(handles.ed061,'String')) && ~isempty(get(handles.ed062,'String')))
+if( ~isempty(get(handles.ed061,'String')) && ~isempty(get(handles.ed062,'String'))) && get(handles.tb061,'Value')
     x = evalin('base',x06);
     y = evalin('base',y06);
     scale_cell = get(handles.ed063,'String');
@@ -1904,16 +1874,10 @@ if( ~isempty(get(handles.ed061,'String')) && ~isempty(get(handles.ed062,'String'
             str6 = strcat(str6,',','''-k.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'-k.');
-    visible = get(handles.tb061,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'-k.');
 end
 
-if( ~isempty(get(handles.ed071,'String')) && ~isempty(get(handles.ed072,'String')))
+if( ~isempty(get(handles.ed071,'String')) && ~isempty(get(handles.ed072,'String'))) && get(handles.tb071,'Value')
     x = evalin('base',x07);
     y = evalin('base',y07);
     scale_cell = get(handles.ed073,'String');
@@ -1956,16 +1920,10 @@ if( ~isempty(get(handles.ed071,'String')) && ~isempty(get(handles.ed072,'String'
             str7 = strcat(str7,',','''-r.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'-r.');
-    visible = get(handles.tb071,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'-r.');
 end
 
-if( ~isempty(get(handles.ed081,'String')) && ~isempty(get(handles.ed082,'String')))
+if( ~isempty(get(handles.ed081,'String')) && ~isempty(get(handles.ed082,'String'))) && get(handles.tb081,'Value')
     x = evalin('base',x08);
     y = evalin('base',y08);
     scale_cell = get(handles.ed083,'String');
@@ -2008,16 +1966,10 @@ if( ~isempty(get(handles.ed081,'String')) && ~isempty(get(handles.ed082,'String'
             str8 = strcat(str8,',','''-b.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'-b.');
-    visible = get(handles.tb081,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'-b.');
 end
 
-if( ~isempty(get(handles.ed091,'String')) && ~isempty(get(handles.ed092,'String')))
+if( ~isempty(get(handles.ed091,'String')) && ~isempty(get(handles.ed092,'String'))) && get(handles.tb091,'Value')
     x = evalin('base',x09);
     y = evalin('base',y09);
     scale_cell = get(handles.ed093,'String');
@@ -2060,16 +2012,10 @@ if( ~isempty(get(handles.ed091,'String')) && ~isempty(get(handles.ed092,'String'
             str9 = strcat(str9,',','''-g.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'-g.');
-    visible = get(handles.tb091,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'-g.');
 end
 
-if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String')))
+if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String'))) && get(handles.tb101,'Value')
     x = evalin('base',x10);
     y = evalin('base',y10);
     scale_cell = get(handles.ed103,'String');
@@ -2112,13 +2058,7 @@ if( ~isempty(get(handles.ed101,'String')) && ~isempty(get(handles.ed102,'String'
             str10 = strcat(str10,',','''-m.''');
         end
     end
-    handle = plot(handles.ax0,xchg,ychg,'-m.');
-    visible = get(handles.tb101,'Value');
-    if(visible)
-        set(handle,'Visible','on');
-    else
-        set(handle,'Visible','off');
-    end
+    plot(handles.ax0,xchg,ychg,'-m.');
 end
 
 
@@ -2266,7 +2206,9 @@ if(strcmp(CmdStr,'No Command'))
 else
 disp(strcat(CMD1,'(',CmdStr,');'))
 disp(strcat(CMD2,'(',Legend,');'))
+disp('legend boxoff;');
 eval(strcat(CMD2,'(handles.ax0,',Legend,');'))
+legend boxoff
 end
 
 
