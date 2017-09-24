@@ -2207,8 +2207,10 @@ else
 disp(strcat(CMD1,'(',CmdStr,');'))
 disp(strcat(CMD2,'(',Legend,');'))
 disp('legend boxoff;');
+disp('grid on;');
 eval(strcat(CMD2,'(handles.ax0,',Legend,');'))
 legend boxoff
+grid on
 end
 
 
