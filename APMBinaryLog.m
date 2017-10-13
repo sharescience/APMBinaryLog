@@ -1,4 +1,6 @@
 function APMBinaryLog
+    eval('clc');
+    disp('waiting ...');
     LOG_FORMAT_MSG    = 128;
     
     % #define HEAD_BYTE1      0xA3    // Decimal 163
@@ -34,6 +36,7 @@ function APMBinaryLog
     types={}; lengths={}; names={}; formats={}; labels={};values={};log={};
     c_last  = zeros(3, 1);
     
+%     tic; % tic1
     % first read find all FMT
     while ftell(fid) < fsize
         c       = fread(fid, 1);
@@ -80,6 +83,10 @@ function APMBinaryLog
         end
     end
     
+%     eval('clc');
+%     disp(['first read time consuming:', num2str(toc),'(s)']); 
+%     tic; % tic2
+    
     % re-read log file
     fseek(fid, 0, -1);
     num = 0;
@@ -119,20 +126,44 @@ function APMBinaryLog
                     switch format_str(i)
                         case 'b'                             %   b   : int8_t
                             value{i} = fread(fid, 1, 'int8');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'B'                             %   B   : uint8_t
                             value{i} = fread(fid, 1, 'uint8');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'h'                             %   h   : int16_t
                             value{i} = fread(fid, 1, 'int16');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'H'                             %   H   : uint16_t
                             value{i} = fread(fid, 1, 'uint16');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'i'                             %   i   : int32_t
                             value{i} = fread(fid, 1, 'int32');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'I'                             %   I   : uint32_t
                             value{i} = fread(fid, 1, 'uint32');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'f'                             %   f   : float
                             value{i} = fread(fid, 1, 'single');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'd'                             %   d   : double
                             value{i} = fread(fid, 1, 'double');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'n'                             %   n   : char[4]
                             value{i} = strtrim(cellstr(fread(fid, 4, 'uint8=>char')'));
                         case 'N'                             %   N   : char[16]
@@ -161,12 +192,24 @@ function APMBinaryLog
                             end
                         case 'L'                             %   L   : int32_t latitude/longitude
                             value{i} = fread(fid, 1, 'int32');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'M'                             %   M   : uint8_t flight mode
                             value{i} = fread(fid, 1, 'uint8');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'q'                             %   q   : int64_t
                             value{i} = fread(fid, 1, 'int64');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                         case 'Q'                             %   Q   : uint64_t
                             value{i} = fread(fid, 1, 'uint64');
+                            if isempty(value{i})
+                                value{i} = 0;
+                            end
                     end
                 end
                 num        = num +1;
@@ -176,6 +219,9 @@ function APMBinaryLog
         end
     end
     fclose(fid);
+    
+%     disp(['second read time consuming:', num2str(toc),'(s)']); 
+%     tic; % tic3
 
     val_names={};
     for i = 1: size(log,1)
@@ -209,6 +255,48 @@ function APMBinaryLog
             end
         end
     end
+    
+%     disp(['Arrangement data time consuming:', num2str(toc),'(s)']); 
+%     tic; % tic4
+    
+    arm_time_us    = 0;
+    disarm_time_us = 0;
+    if exist('ev')
+        for i = 1: size(ev.TimeUS, 1)
+            if isequal(ev.Id(i), 10)
+                arm_time_us = ev.TimeUS(i);
+            end   
+            if isequal(ev.Id(i), 11) || isequal(ev.Id(i), 17) || isequal(ev.Id(i), 18)
+                disarm_time_us = ev.TimeUS(i);
+            end
+        end
+    end
+    
+    find_time_end_by_rcou = false;
+    time_ref              = 0;
+    if exist('rcou')
+        for i = 1: size(rcou.TimeUS, 1)
+            if ~isequal(rcou.C1(i), rcou.C2(i), rcou.C3(i), rcou.C4(i))
+                time_ref = rcou.TimeUS(i);
+            end
+            if isequal(rcou.C1(i), rcou.C2(i), rcou.C3(i), rcou.C4(i)) && ~find_time_end_by_rcou && time_ref > 0
+                disarm_time_us        = rcou.TimeUS(i);
+                find_time_end_by_rcou = true;
+            end
+        end
+    end
+
+    fly_time_us  = disarm_time_us - arm_time_us;
+    fly_time_min = floor(fly_time_us/(60 * 1e6));
+    fly_time_s   = fly_time_us/1e6 - fly_time_min * 60;
+    eval('clc');
+    if fly_time_us > 0
+        disp(['fly time: ', num2str(fly_time_min),' min ', num2str(fly_time_s), ' s']);
+    else
+        disp(['can not find end timestamp']);
+    end
+    
+%     disp(['calc fly time cost:', num2str(toc),'(s)']); 
     
     % if this script run as a fuction, then below is useful.
     for i = 1: size(log, 1)
