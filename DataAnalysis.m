@@ -1546,6 +1546,49 @@ set(handles.ed102,'String',[]);
 set(handles.ed103,'String','1');
 set(handles.ed104,'String','0');
 set(handles.ed105,'String','0');
+
+set(handles.tb011,'Value',1);
+set(handles.tb011,'String','1');
+set(handles.tb011,'BackGroundColor','g')
+
+set(handles.tb021,'Value',1);
+set(handles.tb021,'String','2');
+set(handles.tb021,'BackGroundColor','g')
+
+set(handles.tb031,'Value',1);
+set(handles.tb031,'String','3');
+set(handles.tb031,'BackGroundColor','g')
+
+set(handles.tb041,'Value',1);
+set(handles.tb041,'String','4');
+set(handles.tb041,'BackGroundColor','g')
+    
+set(handles.tb051,'Value',1);
+set(handles.tb051,'String','5');
+set(handles.tb051,'BackGroundColor','g')
+
+set(handles.tb061,'Value',1);
+set(handles.tb061,'String','6');
+set(handles.tb061,'BackGroundColor','g')
+
+set(handles.tb071,'Value',1);
+set(handles.tb071,'String','7');
+set(handles.tb071,'BackGroundColor','g')
+
+set(handles.tb081,'Value',1);
+set(handles.tb081,'String','8');
+set(handles.tb081,'BackGroundColor','g')
+
+set(handles.tb091,'Value',1);
+set(handles.tb091,'String','9');
+set(handles.tb091,'BackGroundColor','g')
+
+set(handles.tb101,'Value',1);
+set(handles.tb101,'String','10');
+set(handles.tb101,'BackGroundColor','g')
+
+set(handles.popupmenu1,'Value',1);
+
 % --- Executes on button press in plot.
 function plot_Callback(hObject, eventdata, handles)
 % hObject    handle to plot (see GCBO)
@@ -2204,10 +2247,40 @@ CMD1 = 'plot';
 CMD2 = 'legend';
 if(strcmp(CmdStr,'No Command'))
 else
-disp(strcat(CMD1,'(',CmdStr,');'))
-disp(strcat(CMD2,'(',Legend,');'))
-disp('legend boxoff;');
-disp('grid on;');
+fileID = fopen('DataAnalysisGen.m','w');
+fprintf(fileID,strcat(CMD1,'(',CmdStr,');\n'));
+fprintf(fileID,strcat(CMD2,'(',Legend,');\n'));
+fprintf(fileID,'legend boxoff;\n');
+fprintf(fileID,'grid on;\n');
+fprintf(fileID,'global bt_1_x;\n');
+fprintf(fileID,'bt_1_x = 0;\n');
+fprintf(fileID,'global bt_3_x;\n');
+fprintf(fileID,'bt_3_x = 0;\n');
+fprintf(fileID,'set(gcf,''WindowButtonDownFcn'',@ButttonDownFcn,''WindowScrollWheelFcn'', @wheel);\n');
+fprintf(fileID,'function ButttonDownFcn(src,event)\n');
+fprintf(fileID,'    global bt_1_x;\n');
+fprintf(fileID,'    global bt_3_x;\n');
+fprintf(fileID,'    [temp_x,temp_y,button] = ginput(1);   \n');
+fprintf(fileID,'    if button == 1\n');
+fprintf(fileID,'        bt_1_x = temp_x;\n');
+fprintf(fileID,'        fprintf(''start=%%.3f s\\n'',bt_1_x/1e6);\n');
+fprintf(fileID,'    end    \n');
+fprintf(fileID,'    if button == 3\n');
+fprintf(fileID,'        bt_3_x = temp_x;\n');
+fprintf(fileID,'        fprintf(''end=%%.3f s\\n'',bt_3_x/1e6);\n');
+fprintf(fileID,'    end\n');
+fprintf(fileID,'end\n');
+fprintf(fileID,'function wheel(src,event)\n');
+fprintf(fileID,'    global bt_1_x;\n');
+fprintf(fileID,'    global bt_3_x;\n');
+fprintf(fileID,'    delta = (bt_3_x - bt_1_x)/1e6;\n');
+fprintf(fileID,'    if delta > 1.0\n');
+fprintf(fileID,'        fprintf(''delta=%%.3f s\\n'',(bt_3_x - bt_1_x)/1e6);\n');
+fprintf(fileID,'    else\n');
+fprintf(fileID,'        fprintf(''delta=%%.3f ms\\n'',(bt_3_x - bt_1_x)/1e3);\n');
+fprintf(fileID,'    end\n');
+fprintf(fileID,'end');
+disp('DataAnalysisGen')
 eval(strcat(CMD2,'(handles.ax0,',Legend,');'))
 legend boxoff
 grid on
@@ -2254,6 +2327,7 @@ function popupmenu2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 list_2=get(handles.popupmenu2,'String');
 val_2=get(handles.popupmenu2,'Value');
+set(handles.popupmenu3,'Value',1);
 global selectedval_2
 selectedval_2=list_2{val_2};
 valselected_2=evalin('base',selectedval_2);

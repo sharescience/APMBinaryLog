@@ -2,11 +2,10 @@ for i = 1:size(stat.id,1)
     FSM_label{stat.id(i, 1)+1, 1} = sprintf('%s%d','id',stat.id(i, 1));
     FSM(stat.id(i, 1)+1, 1)       = stat.id(i, 1);
 end
-C = cell(3, size(FSM_label, 1));
+C = cell(2, size(FSM_label, 1));
 for i = 1:1:size(stat.id,1)
-    C{1, stat.id(i, 1)+1}(size(C{1, stat.id(i, 1)+1}, 1)+1,1) = stat.n(i, 1);
-    C{2, stat.id(i, 1)+1}(size(C{2, stat.id(i, 1)+1}, 1)+1,1) = stat.TimeUS(i, 1);
-    C{3, stat.id(i, 1)+1}(size(C{3, stat.id(i, 1)+1}, 1)+1,1) = stat.stat(i, 1);
+    C{1, stat.id(i, 1)+1}(size(C{1, stat.id(i, 1)+1}, 1)+1,1) = stat.TimeUS(i, 1);
+    C{2, stat.id(i, 1)+1}(size(C{2, stat.id(i, 1)+1}, 1)+1,1) = stat.stat(i, 1);
 end
 
 state = cell2struct(C, FSM_label, 2);
@@ -23,7 +22,7 @@ for i = 1:size(FSM_label, 1)
     if ~isempty(find(FSM(i,1)==except))
         continue
     end
-    plot(h, eval(sprintf('%s%d%s%d','state(',axis_x,').id',FSM(i,1))), eval(sprintf('%s%d','state(3).id',FSM(i,1)))*times,'Color',color(i,:),'Marker','o','MarkerFaceColor',color(i,:),'LineStyle','--');
+    plot(h, eval(sprintf('%s%d%s%d','state(',axis_x,').id',FSM(i,1))), eval(sprintf('%s%d','state(2).id',FSM(i,1)))*times,'Color',color(i,:),'Marker','o','MarkerFaceColor',color(i,:),'LineStyle','--');
     plot_count = plot_count + 1;
     if(isequal(plot_count,1))
         leg = strcat('''','id',sprintf('%d',FSM(i,1)),'''');

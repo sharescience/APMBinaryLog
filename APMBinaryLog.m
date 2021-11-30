@@ -53,8 +53,10 @@ function APMBinaryLog
                     else
                         C{j} = content(:, j);
                     end
-                end
-                FIELDS = regexp(char(labels(i,1)), ',', 'split');
+                end                
+                FIELDS   = regexp(char(labels(i,1)), ',|''', 'split'); 
+                avalible = not(cellfun(@isempty,FIELDS));
+                FIELDS = FIELDS(avalible)
                 C = C(:,2:size(C,2));
                 eval(strcat(lower(char(group_name{i})),'=cell2struct(C,FIELDS,2);'));
                 eval(char(strcat('assignin(','''','base','''',', ','''',char(lower(char(group_name{i}))),'''',',', char(lower(char(group_name{i}))), ');')));
